@@ -9,8 +9,6 @@ import com.android.lib.util.FragmentUtil2;
 import com.android.lib.util.SPUtil;
 import com.android.lib.util.ScreenUtil;
 import com.android.lib.util.activity.ActivityUtil;
-import com.lzy.imagepicker.ImagePicker;
-import com.lzy.imagepicker.view.CropImageView;
 //import com.raizlabs.android.dbflow.config.FlowManager;
 
 import org.xutils.x;

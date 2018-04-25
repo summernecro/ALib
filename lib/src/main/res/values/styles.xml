@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Dialog.NoTitle" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/AnimationPicker</item>
+    </style>
+
+    <style name="AnimationPicker" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+    <declare-styleable name="style_common">
+        <attr name="color_bg" format="color"/>
+        <attr name="color_txt_right" format="color"/>
+        <attr name="txt_right_bg" format="reference"/>
+        <attr name="bg_divider" format="reference"/>
+        <attr name="txt_right_left" format="string"/>
+        <attr name="txt_mid" format="string"/>
+        <attr name="iv_left" format="reference"/>
+        <attr name="iv_right" format="reference"/>
+        <attr name="txt_left" format="string"/>
+        <attr name="txt_right" format="string"/>
+        <attr name="boo_edit" format="boolean"/>
+        <attr name="iv_right2" format="reference"/>
+        <attr name="minwidth" format="dimension"/>
+        <attr name="boo_one" format="boolean"/>
+        <attr name="boo_two" format="boolean"/>
+        <attr name="color_one" format="color"/>
+        <attr name="color_two" format="color"/>
+        <attr name="color_stroke" format="color"/>
+        <attr name="color_stroke_two" format="color"/>
+        <attr name="color_txt" format="color"/>
+        <attr name="color_txt_two" format="color"/>
+        <attr name="stroke" format="dimension"/>
+        <attr name="stroke_two" format="dimension"/>
+        <attr name="corner" format="dimension"/>
+        <attr name="corner_two" format="dimension"/>
+        <attr name="txt_two" format="string"/>
+        <attr name="txt_three" format="string"/>
+        <attr name="txt_maxlenth" format="integer"/>
+        <attr name="inputType" format="integer"/>
+        <attr name="txt_hint" format="string"/>
+    </declare-styleable>
+
+
+    <style name="sheetstyle_more" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_trans_up_more</item>
+        <item name="android:windowExitAnimation">@anim/anim_trans_down_more</item>
+    </style>
+
+    <style name="sheetstyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_trans_up</item>
+        <item name="android:windowExitAnimation">@anim/anim_trans_down</item>
+    </style>
+
+    <declare-styleable name="DashView">
+        <attr name="dashgap" format="dimension" />
+        <attr name="hashwidth" format="dimension" />
+        <attr name="dashcolor" format="reference" />
+        <attr name="dashbg" format="reference" />
+        <attr name="w" format="dimension" />
+        <attr name="h" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="timeline_style">
+        <attr name="marker" format="color|reference" />
+        <attr name="line" format="color|reference" />
+        <attr name="marker_size" format="dimension" />
+        <attr name="line_size" format="dimension" />
+        <attr name="line_orientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="markerInCenter" format="boolean" />
+    </declare-styleable>
+
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="baseTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="Theme.AppCompat.Light.NoActionBar1" parent="@style/Theme.AppCompat.Light">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="swdialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+
+    <style name="animstyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_push_left_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_push_right_out</item>
+    </style>
+
+    <style name="fadein" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_scale_in_dialog</item>
+        <item name="android:windowExitAnimation">@anim/anim_push_right_out</item>
+    </style>
+
+
+
+    <style name="libTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:textAllCaps">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+        <!-- <item name="android:windowAnimationStyle">@style/AnimationActivity</item>-->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:ignore="NewApi">true</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentTransitions" tools:ignore="NewApi">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">false</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+    </style>
+
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:textAllCaps">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+        <!-- <item name="android:windowAnimationStyle">@style/AnimationActivity</item>-->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">false</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+        <item name="android:windowContentTransitions" tools:ignore="DuplicateDefinition,NewApi">true</item>
+    </style>
+
+    <style name="popanimstyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_scale_out</item>
+    </style>
+
+    <declare-styleable name="CircleProgressBar">
+        <attr name="mlpb_inner_radius" format="dimension" />
+        <attr name="mlpb_background_color" format="color" />
+        <attr name="mlpb_progress_color" format="color" />
+        <attr name="mlpb_progress_stoke_width" format="dimension" />
+        <attr name="mlpb_show_arrow" format="boolean" />
+        <attr name="mlpb_enable_circle_background" format="boolean" />
+        <attr name="mlpb_arrow_width" format="dimension" />
+        <attr name="mlpb_arrow_height" format="dimension" />
+
+        <attr name="mlpb_progress" format="integer" />
+        <attr name="mlpb_max" format="integer" />
+
+
+        <attr name="mlpb_progress_text_size" format="dimension" />
+        <attr name="mlpb_progress_text_color" format="color" />
+
+        <!--<attr name="mlpb_progress_text_offset" format="dimension"/>-->
+
+        <attr name="mlpb_progress_text_visibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="MaterialRefreshLayout">
+        <attr name="overlay" format="boolean" />
+        <!-- style for MaterialWaveView  -->
+        <attr name="wave_height_type" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="higher" value="1" />
+        </attr>
+        <attr name="wave_color" format="color" />
+        <attr name="wave_show" format="boolean" />
+        <!-- style for CircleProgressBar  -->
+        <attr name="progress_colors" format="reference" />
+        <attr name="progress_stoke_width" format="dimension" />
+        <attr name="progress_backgroud_color" format="color" />
+        <attr name="progress_show_arrow" format="boolean" />
+        <attr name="progress_arrow_width" format="dimension" />
+        <attr name="progress_arrow_height" format="dimension" />
+        <attr name="progress_show_circle_backgroud" format="boolean" />
+        <attr name="progress_value" format="integer" />
+        <attr name="progress_max_value" format="integer" />
+        <attr name="progress_text_size" format="dimension" />
+        <attr name="progress_text_color" format="color" />
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+        </attr>
+        <attr name="progress_size_type" format="enum">
+            <enum name="normal" value="0"></enum>
+            <enum name="big" value="1"></enum>
+        </attr>
+        <attr name="isLoadMore" format="boolean"></attr>
+    </declare-styleable>
+</resources>

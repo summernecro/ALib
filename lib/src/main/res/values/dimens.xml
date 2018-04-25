@@ -7,4 +7,63 @@
     <dimen name="picker_line_width">1dp</dimen>
     <dimen name="picker_line_mar">15dp</dimen>
     <dimen name="picker_height">230dp</dimen>
+
+
+    <dimen name="dimen_item_content_h">45dp</dimen>
+    <dimen name="dimen_item_content_txt_size">17sp</dimen>
+    <dimen name="dimen_item_content_left_icon_size">17dp</dimen>
+    <dimen name="dimen_item_content_right_icon_size">17dp</dimen>
+    <dimen name="dimen_item_content_gap_size">1px</dimen>
+    <dimen name="dimen_item_content_left_padding">10dp</dimen>
+    <dimen name="dimen_item_content_right_txt_right_padding">5dp</dimen>
+
+    <dimen name="hv_dimen_text_big">27sp</dimen>
+
+    <dimen name="hv_dimen_text_title_aaaaa">22sp</dimen>
+    <dimen name="hv_dimen_text_title_aaaa">21sp</dimen>
+    <dimen name="hv_dimen_text_title_aaa">20sp</dimen>
+    <dimen name="hv_dimen_text_title_aa">19sp</dimen>
+    <dimen name="hv_dimen_text_title_a">18sp</dimen>
+    <dimen name="hv_dimen_text_title">17sp</dimen>
+
+
+    <dimen name="hv_dimen_text_a">16sp</dimen>
+    <dimen name="hv_dimen_text_aa">17sp</dimen>
+    <dimen name="hv_dimen_text_aaa">18sp</dimen>
+    <dimen name="hv_dimen_text">15sp</dimen>
+
+
+    <dimen name="hv_dimen_text_date_a">14sp</dimen>
+    <dimen name="hv_dimen_text_date_aa">15sp</dimen>
+    <dimen name="hv_dimen_text_date_aaa">16sp</dimen>
+    <dimen name="hv_dimen_text_date">13sp</dimen>
+
+    <dimen name="dimen_frag_content_margin">7sp</dimen>
+    <dimen name="dimen_frag_padding">7sp</dimen>
+    <dimen name="dimen_recylce_item_inner_margin">5sp</dimen>
+    <dimen name="dimen_recylce_item_margin">7sp</dimen>
+    <dimen name="dimen_recylce_item_padding">7sp</dimen>
+    <dimen name="dimen_recylce_item_title_txtsize">19.5sp</dimen>
+    <dimen name="dimen_recylce_item_subtitle_txtsize">17sp</dimen>
+
+    <dimen name="dimen_recylce_item_date_txtsize">15sp</dimen>
+    <dimen name="dimen_recylce_item_content_txtsize">16sp</dimen>
+    <dimen name="dimen_recylce_item_btn_txtsize">15sp</dimen>
+
+    <dimen name="dimen_viewpage_title_txtsize">16sp</dimen>
+
+    <dimen name="dimen_text_size_stand">16sp</dimen>
+    <dimen name="dimen_ll_paddmar_top_stand">13sp</dimen>
+    <dimen name="dimen_ll_paddmar_bottom_stand">13sp</dimen>
+    <dimen name="dimen_ll_paddmar_left_stand">10sp</dimen>
+    <dimen name="dimen_ll_paddmar_right_stand">10sp</dimen>
+    <dimen name="dimens_base_title">38dp</dimen>
+    <dimen name="dimens_base_title_clip">68dp</dimen>
+    <dimen name="dimens_base_bottom">54dp</dimen>
+    <dimen name="dimens_base_item">38dp</dimen>
+    <dimen name="dimen_1">1dp</dimen>
+    <dimen name="dimen_1sp">1sp</dimen>
+
+    <dimen name="dimen_icon_arraw_height">13sp</dimen>
+    <dimen name="dimen_icon_arraw_width">13sp</dimen>
 </resources>

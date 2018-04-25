@@ -11,7 +11,7 @@
         android:layout_height="match_parent" />
 
     <ImageView
-        android:background="@drawable/drawable_select_check"
+
         android:id="@+id/iv_check"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"

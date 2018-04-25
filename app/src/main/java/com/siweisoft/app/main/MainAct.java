@@ -10,11 +10,12 @@ import com.android.lib.util.LogUtil;
 import com.android.lib.util.fragment.two.FragManager2;
 //import com.raizlabs.android.dbflow.sql.language.Select;
 import com.siweisoft.app.R;
-import com.siweisoft.app.second.MainFrag;
 
 import java.util.ArrayList;
 
-public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe> implements View.OnClickListener{
+import butterknife.OnClick;
+
+public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe> {
 
     public static long time = 0;
 //    @Override
@@ -36,10 +37,4 @@ public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe> implements View
 //    }
 
 
-    @Override
-    public void onClick(View v) {
-        LogUtil.E("onClick");
-        time = System.currentTimeMillis();
-        FragManager2.getInstance().start(this,"main",R.id.rootr,new MainFrag());
-    }
 }

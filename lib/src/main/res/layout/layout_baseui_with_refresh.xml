@@ -54,7 +54,6 @@
                     android:layout_centerInParent="true"
                     android:alpha="0.5"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/icon_gou"
                     android:visibility="gone" />
             </RelativeLayout>
 

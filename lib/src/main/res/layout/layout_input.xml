@@ -9,7 +9,6 @@
         android:layout_marginBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:background="@drawable/icon_bg_updatepwd"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center_vertical"
@@ -38,7 +37,6 @@
 
     <ImageView
         android:id="@+id/iv_delete"
-        android:src="@drawable/icon_delete"
         android:layout_marginRight="30dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"

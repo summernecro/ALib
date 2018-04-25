@@ -51,7 +51,7 @@ public class BottomItemView extends ViewPager {
 
         Context context;
 
-        int[] images = new int[]{R.drawable.ic_launcher_round, R.drawable.ic_launcher_round, R.drawable.ic_note};
+        int[] images = new int[]{R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher};
 
         long time = 0;
 

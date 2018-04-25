@@ -16,7 +16,6 @@ import com.android.lib.constant.ValueConstant;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
-import com.lzy.imagepicker.ui.ImageGridActivity;
 
 import java.io.File;
 import java.io.Serializable;
@@ -137,11 +136,6 @@ public class IntentUtil {
 
     }
 
-    public void photosShowFromphone(Fragment fragment, int requstCode) {
-        Intent intent = new Intent(fragment.getContext(), ImageGridActivity.class);
-        intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS, false); // 是否是直接打开相机
-        fragment.startActivityForResult(intent, requstCode);
-    }
 
 
     public void pickImage(Fragment fragment,int res){

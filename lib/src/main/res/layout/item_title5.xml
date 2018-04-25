@@ -93,7 +93,6 @@
                 android:id="@+id/ftv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/drawable_title"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
                 android:textColor="@color/white"
@@ -104,7 +103,6 @@
 
             <ImageView
                 tools:visibility="gone"
-                tools:background="@drawable/arrow_down"
                 app:layout_constraintLeft_toRightOf="@+id/ftv_title"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

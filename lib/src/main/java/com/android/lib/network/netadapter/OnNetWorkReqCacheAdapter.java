@@ -3,10 +3,8 @@ package com.android.lib.network.netadapter;
 import android.content.Context;
 
 import com.android.lib.constant.ValueConstant;
-import com.android.lib.network.bean.db.NetCacheDBBean;
 import com.android.lib.network.bean.res.BaseResBean;
 import com.android.lib.network.interf.OnNetWorkReqInterf;
-import com.android.lib.network.ope.NetCacheDBOpe;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.NetWorkUtil;
 import com.google.gson.Gson;
@@ -38,8 +36,6 @@ public abstract class OnNetWorkReqCacheAdapter implements OnNetWorkReqInterf {
             onNetWorkResult(false, baseResBean);
             switch (baseResBean.getErrorCode()) {
                 case ValueConstant.ERROR_CODE_NET_NO_CONNETCT:
-                    NetCacheDBOpe netCacheDBOpe = new NetCacheDBOpe(context, new NetCacheDBBean());
-                    //netCacheDBOpe.save(MethodValue.getUserInfo(context).getData().getUser().getDisplayname(),baseResBean.getData().toString(),url);
                     break;
             }
         } else {

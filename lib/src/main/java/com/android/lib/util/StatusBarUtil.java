@@ -10,7 +10,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.android.lib.util.activity.ActivityUtil;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 // android:fitsSystemWindows="true"
 //android:clipToPadding="true"
@@ -35,48 +34,7 @@ public class StatusBarUtil {
      * @param activity
      * @param resId
      */
-    public void setStatusBarColorResId(Activity activity, int resId) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window win = activity.getWindow();
-            WindowManager.LayoutParams winParams = win.getAttributes();
-            final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-            winParams.flags |= bits;
-            win.setAttributes(winParams);
-        }
-        SystemBarTintManager tintManager = new SystemBarTintManager(activity);
-        tintManager.setStatusBarTintEnabled(true);
-        tintManager.setNavigationBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(resId);
-        tintManager.setStatusBarAlpha(1);
-    }
 
-    public void enableStatusBarColorResId(Activity activity) {
-        SystemBarTintManager tintManager = new SystemBarTintManager(activity);
-        tintManager.setStatusBarTintEnabled(true);
-        tintManager.setNavigationBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(android.R.color.transparent);
-        tintManager.setStatusBarAlpha(0);
-    }
-
-    /**
-     * 从颜色资源设置状态栏的颜色
-     *
-     * @param activity
-     * @param color
-     */
-    public void setStatusBarColor(Activity activity, int color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window win = activity.getWindow();
-            WindowManager.LayoutParams winParams = win.getAttributes();
-            final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-            winParams.flags |= bits;
-            win.setAttributes(winParams);
-        }
-        SystemBarTintManager tintManager = new SystemBarTintManager(activity);
-        tintManager.setStatusBarTintEnabled(true);
-        tintManager.setNavigationBarTintEnabled(false);
-        tintManager.setStatusBarTintColor(color);
-    }
 
     public void hideNavigationBar(Activity activity) {
         View decorView = activity.getWindow().getDecorView();
