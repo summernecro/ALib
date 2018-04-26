@@ -1,6 +1,7 @@
 package com.android.lib.network.news;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.lib.base.interf.OnFinishListener;
 import com.android.lib.bean.BaseBean;
@@ -16,12 +17,14 @@ import com.android.lib.util.StringUtil;
 import com.google.gson.reflect.TypeToken;
 
 import org.xutils.common.Callback;
+import org.xutils.common.task.PriorityExecutor;
 import org.xutils.common.util.KeyValue;
 import org.xutils.http.RequestParams;
 import org.xutils.http.body.MultipartBody;
 import org.xutils.http.cookie.DbCookieStore;
 import org.xutils.x;
 
+import java.io.File;
 import java.net.HttpCookie;
 import java.util.ArrayList;
 import java.util.List;
@@ -420,6 +423,68 @@ public class NetGet {
                     deal.onFinished();
                 }
                 LogUtil.E("");
+            }
+        });
+    }
+
+    public static void downLoadFile(final String netpath, String locpath, final NetI netI){
+        LogUtil.E(netpath);
+        if (!netI.onNetStart(netpath, locpath)) {
+            BaseResBean res = new BaseResBean();
+            res.setErrorCode(ValueConstant.ERROR_CODE_NET_NO_CONNETCT);
+            res.setErrorMessage(ValueConstant.ERROR_STR_NET_NO_CONNETCT);
+            // res.setData(jsonstr);
+            netI.onNetFinish(false, netpath, res);
+            return;
+        }
+
+
+        //设置请求参数
+        RequestParams params = new RequestParams(netpath);
+        params.setAutoResume(true);//设置是否在下载是自动断点续传
+        params.setAutoRename(false);//设置是否根据头信息自动命名文件
+        params.setSaveFilePath(locpath);
+        params.setExecutor(new PriorityExecutor(2, true));//自定义线程池,有效的值范围[1, 3], 设置为3时, 可能阻塞图片加载.
+        params.setCancelFast(true);//是否可以被立即停止.
+        //下面的回调都是在主线程中运行的,这里设置的带进度的回调
+
+        Callback.Cancelable cancelable = x.http().get(params, new Callback.ProgressCallback<File>() {
+            @Override
+            public void onCancelled(CancelledException arg0) {
+                Log.i("tag", "取消"+Thread.currentThread().getName());
+            }
+
+            @Override
+            public void onError(Throwable arg0, boolean arg1) {
+                Log.i("tag", "onError: 失败"+Thread.currentThread().getName());
+            }
+
+            @Override
+            public void onFinished() {
+                netI.onNetFinish(true, netpath, new BaseResBean());
+                Log.i("tag", "完成,每次取消下载也会执行该方法"+Thread.currentThread().getName());
+            }
+
+            @Override
+            public void onSuccess(File arg0) {
+                Log.i("tag", "下载成功的时候执行"+Thread.currentThread().getName());
+            }
+
+            @Override
+            public void onLoading(long total, long current, boolean isDownloading) {
+                if (isDownloading) {
+                    Log.i("tag", "下载中,会不断的进行回调:"+Thread.currentThread().getName());
+                }
+            }
+
+            @Override
+            public void onStarted() {
+                Log.i("tag", "开始下载的时候执行"+Thread.currentThread().getName());
+            }
+
+            @Override
+            public void onWaiting() {
+                Log.i("tag", "等待,在onStarted方法之前执行"+Thread.currentThread().getName());
             }
         });
     }

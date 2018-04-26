@@ -1,6 +1,7 @@
 package com.android.lib.network;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.lib.base.interf.OnFinishListener;
 import com.android.lib.bean.BaseBean;
@@ -17,12 +18,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.xutils.common.Callback;
+import org.xutils.common.task.PriorityExecutor;
 import org.xutils.common.util.KeyValue;
 import org.xutils.http.RequestParams;
 import org.xutils.http.body.MultipartBody;
 import org.xutils.http.cookie.DbCookieStore;
 import org.xutils.x;
 
+import java.io.File;
 import java.net.HttpCookie;
 import java.util.ArrayList;
 import java.util.List;
@@ -610,4 +613,5 @@ public class NetWork {
             }
         });
     }
+
 }

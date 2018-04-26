@@ -13,15 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bottommenu"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
+<TextView
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:id="@+id/aaa"
+    android:text="1234"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
 <com.android.lib.view.bottommenu.BottomMenuView
     android:background="@color/color_blue_300"
     app:layout_constraintLeft_toLeftOf="parent"

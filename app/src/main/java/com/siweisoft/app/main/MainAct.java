@@ -2,10 +2,15 @@ package com.siweisoft.app.main;
 
 //by summer on 2018-03-29.
 
+import android.os.Environment;
 import android.view.View;
 
 import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.base.fragment.BaseUIFrag;
+import com.android.lib.network.bean.res.BaseResBean;
+import com.android.lib.network.news.NetAdapter;
+import com.android.lib.network.news.NetGet;
+import com.android.lib.network.news.UINetAdapter;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.fragment.two.FragManager2;
 //import com.raizlabs.android.dbflow.sql.language.Select;
@@ -15,7 +20,7 @@ import java.util.ArrayList;
 
 import butterknife.OnClick;
 
-public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe> {
+public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe> implements View.OnClickListener {
 
     public static long time = 0;
 //    @Override
@@ -37,4 +42,20 @@ public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe> {
 //    }
 
 
+    @Override
+    protected void initNow() {
+        super.initNow();
+        findViewById(R.id.aaa).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        NetGet.downLoadFile("http://www.summernecro.com:8888/record/20170629/20170626154234Wb7TFgsJ.jpg", Environment.getExternalStorageDirectory() + "/records/1.jpg", new NetAdapter(this) {
+            @Override
+            public void onNetFinish(boolean haveData, String url, BaseResBean baseResBean) {
+                super.onNetFinish(haveData, url, baseResBean);
+
+            }
+        });
+    }
 }
