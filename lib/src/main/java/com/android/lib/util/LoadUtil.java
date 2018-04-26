@@ -121,7 +121,7 @@ public class LoadUtil {
 
 
     public void startLoading(Context context,ViewGroup viewGroup){
-       if( viewGroup.getChildAt(0) instanceof ViewGroup){
+       if(viewGroup!=null&& viewGroup.getChildAt(0) instanceof ViewGroup){
            ViewGroup viewGroup1 = (ViewGroup) viewGroup.getChildAt(0);
            if(viewGroup1.getChildCount()>0&&viewGroup1.getChildAt(0) instanceof TitleView){
                loadingView = LayoutInflater.from(context).inflate(R.layout.dialog_loading_havetitle,null);
@@ -137,7 +137,7 @@ public class LoadUtil {
     }
 
     public void stopLoading(ViewGroup viewGroup){
-        if(loadingView !=null && loadingView.getParent()==viewGroup){
+        if(viewGroup!=null &&loadingView !=null && loadingView.getParent()==viewGroup){
             viewGroup.removeView(loadingView);
         }
     }
