@@ -7,4 +7,6 @@ public interface OnLoadingInterf {
     Void onStarLoading(Object o);
 
     Void onStopLoading(Object o);
+
+    void onProgress(Object o);
 }
