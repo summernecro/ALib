@@ -14,6 +14,7 @@ import com.android.lib.R;
 import com.android.lib.view.loading.BallTrianglePathIndicator;
 import com.android.lib.view.title.TitleView;
 import com.wang.avi.AVLoadingIndicatorView;
+import com.wang.avi.Indicator;
 
 import java.util.ArrayList;
 
@@ -119,6 +120,7 @@ public class LoadUtil {
 
     View loadingView;
 
+    public static Indicator indicator;
 
     public void startLoading(Context context,ViewGroup viewGroup){
        if( viewGroup.getChildAt(0) instanceof ViewGroup){
@@ -130,7 +132,7 @@ public class LoadUtil {
            }
            AVLoadingIndicatorView avLoadingIndicatorView = (AVLoadingIndicatorView) loadingView.findViewById(R.id.av);
            viewGroup.addView(loadingView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-           avLoadingIndicatorView.setIndicator(new BallTrianglePathIndicator());
+           avLoadingIndicatorView.setIndicator(indicator==null?new BallTrianglePathIndicator():indicator);
            avLoadingIndicatorView.show();
        }
 
