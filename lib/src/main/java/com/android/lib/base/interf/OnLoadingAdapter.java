@@ -4,13 +4,13 @@ package com.android.lib.base.interf;
 
 public class OnLoadingAdapter implements OnLoadingInterf{
     @Override
-    public Void onStarLoading(Object o) {
-        return null;
+    public void onStarLoading(Object o) {
+
     }
 
     @Override
-    public Void onStopLoading(Object o) {
-        return null;
+    public void onStopLoading(Object o) {
+
     }
 
     @Override
