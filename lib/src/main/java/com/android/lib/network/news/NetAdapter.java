@@ -23,9 +23,11 @@ public  class NetAdapter<A> implements NetI<A> {
     protected Context context;
     protected String url;
 
+
     protected boolean showtoast = false;
 
     protected BaseUIFrag baseUIFrag;
+
 
     public NetAdapter(Context context) {
         this.context = context;
@@ -88,7 +90,9 @@ public  class NetAdapter<A> implements NetI<A> {
                 if(!NullUtil.isStrEmpty(baseResBean.getMessage())&& showtoast){
                     ToastUtil.getInstance().showShort(context.getApplicationContext(),StringUtil.getStr(baseResBean.getMessage())+StringUtil.getStr(baseResBean.getErrorMessage()));
                 }
-                SPUtil.getInstance().saveStr(url,GsonUtil.getInstance().toJson(baseResBean));
+                if(cache){
+                    SPUtil.getInstance().saveStr(url,GsonUtil.getInstance().toJson(baseResBean));
+                }
                 deal(haveData,url,baseResBean);
             }
 
@@ -103,8 +107,9 @@ public  class NetAdapter<A> implements NetI<A> {
         if(type instanceof ParameterizedType ){
             ParameterizedType parameterizedType = (ParameterizedType) type;
             A aa = null;
+            String json = GsonUtil.getInstance().toJson(baseResBean.getResult());
             try {
-                Object o = new JSONTokener(GsonUtil.getInstance().toJson(baseResBean.getResult())).nextValue();
+                Object o = new JSONTokener(json).nextValue();
                 try {
                     isobject = o instanceof JSONObject;
                     if(!isobject){
@@ -119,10 +124,10 @@ public  class NetAdapter<A> implements NetI<A> {
                 }
                 if(isobject){
                     Class<A> a = (Class<A>) parameterizedType.getActualTypeArguments()[0];
-                     aa = GsonUtil.getInstance().fromJson(GsonUtil.getInstance().toJson(baseResBean.getResult()),a);
+                     aa = GsonUtil.getInstance().fromJson(json,a);
                 }else if(isarray){
                     TypeToken<?> typeToken = TypeToken.get(parameterizedType.getActualTypeArguments()[0]);
-                     aa = GsonUtil.getInstance().fromJson(GsonUtil.getInstance().toJson(baseResBean.getResult()),typeToken.getType());
+                     aa = GsonUtil.getInstance().fromJson(json,typeToken.getType());
                 }else{
                     LogUtil.E(baseResBean.getResult());
                 }
