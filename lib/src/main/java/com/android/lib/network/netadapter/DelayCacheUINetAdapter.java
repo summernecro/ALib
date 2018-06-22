@@ -15,6 +15,7 @@ public abstract class DelayCacheUINetAdapter extends UINetChacheAdapter {
 
     Handler handler = new Handler();
     private int delay = 500;
+    LoadUtil loadUtil = new LoadUtil();
 
     public DelayCacheUINetAdapter(Context context, int delay) {
         super(context);
@@ -32,7 +33,7 @@ public abstract class DelayCacheUINetAdapter extends UINetChacheAdapter {
                 @Override
                 public void run() {
                     onNetWorkResult(false, baseResBean);
-                    LoadUtil.getInstance().onStopLoading(tag);
+                    loadUtil.onStopLoading(tag);
                 }
             }, delay);
         } else {
@@ -41,7 +42,7 @@ public abstract class DelayCacheUINetAdapter extends UINetChacheAdapter {
                     @Override
                     public void run() {
                         onNetWorkResult(false, baseResBean);
-                        LoadUtil.getInstance().onStopLoading(tag);
+                        loadUtil.onStopLoading(tag);
                     }
                 }, delay);
             } else {

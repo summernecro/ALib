@@ -12,6 +12,7 @@ import com.android.lib.util.LoadUtil;
  */
 public abstract class UINetChacheAdapter extends OnNetWorkReqCacheAdapter {
 
+    LoadUtil loadUtil = new LoadUtil();
 
     public UINetChacheAdapter(Context context) {
         super(context);
@@ -19,14 +20,14 @@ public abstract class UINetChacheAdapter extends OnNetWorkReqCacheAdapter {
 
     @Override
     public boolean onNetWorkReqStart(String tag, String reqjson) {
-        LoadUtil.getInstance().onStartLoading(context, tag);
+        loadUtil.onStartLoading(context, tag);
         return super.onNetWorkReqStart(tag, reqjson);
     }
 
     @Override
     public void onNetWorkReqFinish(boolean haveData, String url, BaseResBean baseResBean) {
         super.onNetWorkReqFinish(haveData, url, baseResBean);
-        LoadUtil.getInstance().onStopLoading(tag);
+        loadUtil.onStopLoading(tag);
     }
 
 

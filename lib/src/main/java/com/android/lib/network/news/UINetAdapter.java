@@ -18,6 +18,8 @@ public abstract class UINetAdapter<A> extends NetAdapter<A> {
 
     private int isload = 0;
 
+    LoadUtil loadUtil = new LoadUtil();
+
     public UINetAdapter(Context context) {
         super(context);
     }
@@ -52,7 +54,7 @@ public abstract class UINetAdapter<A> extends NetAdapter<A> {
             if(baseUIFrag!=null){
                 baseUIFrag.startLoading();
             }else{
-                LoadUtil.getInstance().onStartLoading(context, url);
+                loadUtil.onStartLoading(context, url);
             }
         }
         return super.onNetStart(url, gson);
@@ -72,7 +74,7 @@ public abstract class UINetAdapter<A> extends NetAdapter<A> {
     }
 
     public void stopLoading(){
-        LoadUtil.getInstance().onStopLoading(this.url);
+        loadUtil.onStopLoading(this.url);
     }
 
     public void stopRefreshORLoadMore(){
