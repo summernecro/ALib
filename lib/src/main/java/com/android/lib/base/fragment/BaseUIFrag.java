@@ -96,7 +96,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
-        initNow();
+
         HandleUtil.getInstance().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -106,7 +106,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
                 getP().getU().setView(getView());
                 getP().getU().initUI();
                 unbinder = ButterKnife.bind(baseUIFrag, baseUIRoot);
-                initdelay();
+                initNow();
             }
         }, delayTime());
         fragIs.onViewCreated(view,savedInstanceState);
