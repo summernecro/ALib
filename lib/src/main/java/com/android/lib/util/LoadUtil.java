@@ -53,15 +53,7 @@ public class LoadUtil {
             "SemiCircleSpinIndicator",
             "com.wang.avi.sample.MyCustomIndicator"
     };
-    private static LoadUtil instance;
     ArrayList<MyDialog> dialogs = new ArrayList<>();
-
-    public static LoadUtil getInstance() {
-        if (instance == null) {
-            instance = new LoadUtil();
-        }
-        return instance;
-    }
 
     public void onStartLoading(Context activity, String tag) {
         if(activity==null){
@@ -120,7 +112,7 @@ public class LoadUtil {
 
     View loadingView;
 
-    public static Indicator indicator;
+    private Indicator indicator;
 
     public void startLoading(Context context,ViewGroup viewGroup){
        if( viewGroup.getChildAt(0) instanceof ViewGroup){
@@ -145,5 +137,11 @@ public class LoadUtil {
     }
 
 
+    public Indicator getIndicator() {
+        return indicator;
+    }
 
+    public void setIndicator(Indicator indicator) {
+        this.indicator = indicator;
+    }
 }
