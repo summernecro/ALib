@@ -127,7 +127,16 @@ public class LoadUtil {
            avLoadingIndicatorView.setIndicator(indicator==null?new BallTrianglePathIndicator():indicator);
            avLoadingIndicatorView.show();
        }
+    }
 
+
+    public void startLoadingDefault(Context context,ViewGroup viewGroup,int color){
+        loadingView = LayoutInflater.from(context).inflate(R.layout.dialog_loading,null);
+        AVLoadingIndicatorView avLoadingIndicatorView = (AVLoadingIndicatorView) loadingView.findViewById(R.id.av);
+        avLoadingIndicatorView.setIndicatorColor(color);
+        viewGroup.addView(loadingView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        avLoadingIndicatorView.setIndicator(indicator==null?new BallTrianglePathIndicator():indicator);
+        avLoadingIndicatorView.show();
     }
 
     public void stopLoading(ViewGroup viewGroup){

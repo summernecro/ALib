@@ -21,6 +21,6 @@ public class MainUIOpe extends BaseUIOpe<ActMainBinding>{
         bottomMenuBeans.add(new BottomMenuBean("图片", R.drawable.video_icon,null,null, ColorStateList.valueOf(R.color.black)));
         bottomMenuBeans.add(new BottomMenuBean("文字", R.drawable.video_icon,null,null, ColorStateList.valueOf(R.color.black)));
         bottomMenuBeans.add(new BottomMenuBean("设置", R.drawable.video_icon,null,null, ColorStateList.valueOf(R.color.black)));
-        getBind().bottommenu.initItems(bottomMenuBeans);
+       // getBind().bottommenu.initItems(bottomMenuBeans);
     }
 }

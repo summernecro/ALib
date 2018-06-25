@@ -45,7 +45,7 @@ public class BaseOpes<A extends BaseUIOpe, B extends BaseDAOpe,C extends BaseVal
         this.ui = ui;
     }
 
-    public C getVa() {
+    public C getV() {
         return va;
     }
 

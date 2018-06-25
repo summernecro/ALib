@@ -2,8 +2,10 @@ package com.siweisoft.app.main;
 
 //by summer on 2018-03-29.
 
+import android.graphics.Color;
 import android.os.Environment;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.base.fragment.BaseUIFrag;
@@ -14,6 +16,7 @@ import com.android.lib.network.news.UINetAdapter;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.fragment.two.FragManager2;
 //import com.raizlabs.android.dbflow.sql.language.Select;
+import com.android.lib.view.loading.BallTrianglePathIndicator;
 import com.siweisoft.app.R;
 
 import java.util.ArrayList;
@@ -46,6 +49,7 @@ public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe,MainValue> imple
     protected void initNow() {
         super.initNow();
         findViewById(R.id.aaa).setOnClickListener(this);
+        getP().getV().getLoadUtil().startLoadingDefault(this, (ViewGroup) getP().getU().getBind().bottommenu,getResources().getColor(R.color.color_red_500));
     }
 
     @Override
