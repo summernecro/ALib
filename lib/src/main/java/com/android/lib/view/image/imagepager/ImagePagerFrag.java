@@ -11,7 +11,7 @@ import com.android.lib.constant.ValueConstant;
 
 import java.util.ArrayList;
 
-public class ImagePagerFrag extends BaseUIFrag<ImagePagerUIOpe, ImagePagerDAOpe> {
+public class ImagePagerFrag extends BaseUIFrag<ImagePagerUIOpe, ImagePagerDAOpe,ImagePagerValue> {
 
 
     @Override

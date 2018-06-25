@@ -16,6 +16,7 @@ import com.android.lib.base.interf.FragI;
 import com.android.lib.base.ope.BaseDAOpe;
 import com.android.lib.base.ope.BaseOpes;
 import com.android.lib.base.ope.BaseUIOpe;
+import com.android.lib.base.ope.BaseValue;
 import com.android.lib.constant.ValueConstant;
 import com.android.lib.databinding.FragDialogCenterBinding;
 import com.android.lib.databinding.LayoutBaseuiBinding;
@@ -39,12 +40,12 @@ import butterknife.Unbinder;
 /**
  * Created by summer on 2016/4/16 0016 16:03.
  */
-public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> extends BaseFrg implements View.OnClickListener, View.OnLongClickListener {
+public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C extends BaseValue> extends BaseFrg implements View.OnClickListener, View.OnLongClickListener {
 
 
     private Unbinder unbinder;
 
-    private BaseOpes<A, B> opes;
+    private BaseOpes<A, B,C> opes;
 
     private FragIs fragIs = new FragIs();
 
@@ -68,7 +69,8 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
         baseUIFrag = this;
         LogUtil.E(this.getClass());
         setArguments(new Bundle());
-        opes = new BaseOpes<>(null, null);
+        opes = new BaseOpes<>(null, null,null);
+        initcc(getClass());
         initbb(getClass());
         getP().getD().initDA();
     }
@@ -167,9 +169,30 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
     /**
      * 获取操作类
      */
-    public BaseOpes<A, B> getP() {
+    public BaseOpes<A, B,C> getP() {
         return opes;
     }
+
+
+    private void initcc(Class<?> c) {
+        if (c == null) {
+            opes.setVa((C)(new BaseValue()));
+            return;
+        }
+        if (c.getGenericSuperclass() instanceof ParameterizedType) {
+            Class<C> b = (Class<C>) ((ParameterizedType) c.getGenericSuperclass()).getActualTypeArguments()[2];
+            try {
+                Constructor<C> bc = b.getConstructor();
+                C cc = bc.newInstance();
+                opes.setVa(cc);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            initcc(c.getSuperclass());
+        }
+    }
+
 
     private void initbb(Class<?> c) {
         if (c == null) {

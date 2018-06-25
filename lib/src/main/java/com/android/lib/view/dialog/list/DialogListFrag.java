@@ -15,7 +15,7 @@ import com.android.lib.util.fragment.two.FragManager2;
 
 import java.util.List;
 
-public class DialogListFrag extends BaseUIFrag<DialogListUIOpe,DialogListDAOpe> implements ViewListener{
+public class DialogListFrag extends BaseUIFrag<DialogListUIOpe,DialogListDAOpe,DialogListValue> implements ViewListener{
 
 
     private List<String> strs;

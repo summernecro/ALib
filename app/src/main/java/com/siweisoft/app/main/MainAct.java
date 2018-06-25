@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import butterknife.OnClick;
 
-public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe> implements View.OnClickListener {
+public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe,MainValue> implements View.OnClickListener {
 
     public static long time = 0;
 //    @Override

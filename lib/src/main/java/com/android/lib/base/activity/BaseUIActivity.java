@@ -8,6 +8,7 @@ import com.android.lib.R;
 import com.android.lib.base.ope.BaseDAOpe;
 import com.android.lib.base.ope.BaseOpes;
 import com.android.lib.base.ope.BaseUIOpe;
+import com.android.lib.base.ope.BaseValue;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.fragment.two.FragManager2;
 import com.android.lib.view.bottommenu.MessageEvent;
@@ -25,11 +26,11 @@ import butterknife.ButterKnife;
 /**
  * Created by summer on 2016/4/16 0016 11:51.
  */
-public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe> extends BaseActivity {
+public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C extends BaseValue> extends BaseActivity {
 
     protected ViewGroup baseUIRoot;
 
-    protected BaseOpes<A, B> opes;
+    protected BaseOpes<A, B,C> opes;
 
     private String moudle;
 
@@ -63,14 +64,38 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe> e
     }
 
 
-    public BaseOpes<A, B> getP() {
+    public BaseOpes<A, B,C> getP() {
         if (opes == null) {
-            opes= new BaseOpes<>(null,null);
+            opes= new BaseOpes<>(null,null,null);
+            initcc(getClass());
             initaa(getClass());
             initbb(getClass());
         }
         return opes;
     }
+
+
+    private void initcc(Class<?> c) {
+        if (c == null) {
+            opes.setVa((C)(new BaseValue()));
+            return;
+        }
+        if (c.getGenericSuperclass() instanceof ParameterizedType) {
+            Class<C> b = (Class<C>) ((ParameterizedType) c.getGenericSuperclass()).getActualTypeArguments()[2];
+            try {
+                Constructor<C> bc = b.getConstructor();
+                C cc = bc.newInstance();
+                opes.setVa(cc);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            initcc(c.getSuperclass());
+        }
+    }
+
+
+
 
     private void initbb(Class<?> c) {
         if (c == null) {
