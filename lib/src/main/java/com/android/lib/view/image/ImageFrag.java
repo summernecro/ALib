@@ -8,13 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.lib.GlideApp;
 import com.android.lib.R;
 import com.android.lib.base.fragment.BaseFrg;
 import com.android.lib.constant.ValueConstant;
 import com.android.lib.util.NullUtil;
-import com.lzy.imagepicker.ImagePicker;
-
-import uk.co.senab.photoview.PhotoView;
+import com.luck.picture.lib.photoview.PhotoView;
 
 
 public class ImageFrag extends BaseFrg implements View.OnLongClickListener, View.OnClickListener {
@@ -44,7 +43,7 @@ public class ImageFrag extends BaseFrg implements View.OnLongClickListener, View
         }
         url = getArguments().getString(ValueConstant.DATA_DATA);
         if (!NullUtil.isStrEmpty(url)) {
-            ImagePicker.getInstance().getImageLoader().displayImage(getActivity(), url, photoView, 0, 0);
+            GlideApp.with(photoView).asBitmap().load(url);
         }
         photoView.setOnLongClickListener(this);
         photoView.setOnClickListener(this);

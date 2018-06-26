@@ -88,8 +88,7 @@ dependencies {
 
     compile 'org.greenrobot:eventbus:3.0.0'//消息总线处理
 
-    compile 'com.lzy.widget:imagepicker:0.6.1'
-    compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.9'
+    compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
 
     compile 'com.github.bumptech.glide:glide:4.5.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'//图片加载
