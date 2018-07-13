@@ -2,6 +2,7 @@ package com.android.lib.base.activity;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.lib.R;
@@ -10,8 +11,7 @@ import com.android.lib.base.ope.BaseOpes;
 import com.android.lib.base.ope.BaseUIOpe;
 import com.android.lib.base.ope.BaseValue;
 import com.android.lib.util.LogUtil;
-import com.android.lib.util.fragment.two.FragManager2;
-import com.android.lib.view.bottommenu.MessageEvent;
+import com.android.lib.view.bottommenu.Msg;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * Created by summer on 2016/4/16 0016 11:51.
  */
-public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C extends BaseValue> extends BaseActivity {
+public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C extends BaseValue> extends BaseActivity implements View.OnClickListener{
 
     protected ViewGroup baseUIRoot;
 
@@ -138,10 +138,26 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
         }
     }
 
+    @Override
+    public void onClick(View v) {
 
+    }
+
+    /**
+     * 消息总线处理
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void dealMesage(MessageEvent event) {
-        LogUtil.E(getClass().getName());
+    public void dealMesage(Msg event) {
+        LogUtil.E(event.dealer + ":" + getClass().getName());
+        if (!event.dealer.equals(getClass().getName())) {
+            event.isme = false;
+            return;
+        }
+        update(event);
+    }
+
+    protected void update(Msg event){
+
     }
 
     @Override

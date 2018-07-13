@@ -5,7 +5,7 @@ import android.content.Context;
 import com.android.lib.base.fragment.BaseUIFrag;
 import com.android.lib.network.bean.res.BaseResBean;
 import com.android.lib.util.*;
-import com.android.lib.view.bottommenu.MessageEvent;
+import com.android.lib.view.bottommenu.Msg;
 import com.google.gson.reflect.TypeToken;
 
 import org.greenrobot.eventbus.EventBus;
@@ -148,7 +148,7 @@ public  class NetAdapter<A> implements NetI<A> {
     @Override
     public void onResult(boolean success, String msg, A o) {
         if(msg!=null&&msg.toLowerCase().contains("Unauthorized".toLowerCase())){
-            MessageEvent messageEvent = new MessageEvent();
+            Msg messageEvent = new Msg();
             messageEvent.sender = "net";
             messageEvent.dealer = "main";
             EventBus.getDefault().post(messageEvent);

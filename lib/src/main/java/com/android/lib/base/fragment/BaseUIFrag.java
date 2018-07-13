@@ -1,14 +1,11 @@
 package com.android.lib.base.fragment;
 
-import android.animation.Animator;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.os.HandlerThread;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 
 import com.android.lib.R;
 import com.android.lib.base.activity.BaseUIActivity;
@@ -18,14 +15,13 @@ import com.android.lib.base.ope.BaseOpes;
 import com.android.lib.base.ope.BaseUIOpe;
 import com.android.lib.base.ope.BaseValue;
 import com.android.lib.constant.ValueConstant;
-import com.android.lib.databinding.FragDialogCenterBinding;
 import com.android.lib.databinding.LayoutBaseuiBinding;
 import com.android.lib.util.LoadUtil;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.fragment.two.FragManager2;
 import com.android.lib.util.system.HandleUtil;
 import com.android.lib.util.video.TipUtil;
-import com.android.lib.view.bottommenu.MessageEvent;
+import com.android.lib.view.bottommenu.Msg;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -263,12 +259,17 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
      * 消息总线处理
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void dealMesage(MessageEvent event) {
+    public void dealMesage(Msg event) {
         LogUtil.E(event.dealer + ":" + getClass().getName());
         if (!event.dealer.equals(getClass().getName())) {
             event.isme = false;
             return;
         }
+        update(event);
+    }
+
+    protected void update(Msg event){
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
