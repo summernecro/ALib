@@ -68,7 +68,15 @@ public  class NetAdapter<A> implements NetI<A> {
     public void onNetFinish(boolean haveData, String url, BaseResBean baseResBean) {
         if (!haveData) {
             if(cache){
-                onResult(true,baseResBean.getErrorMessage(), null);
+                if(showtoast){
+                    ToastUtil.getInstance().showShort(context,"当前为无网络测试环境");
+                }
+                BaseResBean resBean = GsonUtil.getInstance().fromJson(SPUtil.getInstance().getStr(url),BaseResBean.class);
+                if(resBean ==null){
+                    resBean = new BaseResBean();
+                    resBean.setCode("200");
+                }
+                deal(haveData,url,resBean);
             }else{
                 onResult(false,baseResBean.getErrorMessage(), null);
                 if(!NullUtil.isStrEmpty(baseResBean.getMessage())&& showtoast){
@@ -83,7 +91,7 @@ public  class NetAdapter<A> implements NetI<A> {
                 BaseResBean resBean = GsonUtil.getInstance().fromJson(SPUtil.getInstance().getStr(url),BaseResBean.class);
                 if(resBean ==null){
                     resBean = new BaseResBean();
-                    resBean.setCode("000");
+                    resBean.setCode("200");
                 }
                 deal(haveData,url,resBean);
             }else{

@@ -10,6 +10,7 @@ import com.android.lib.util.GsonUtil;
 import com.android.lib.util.NetWorkUtil;
 import com.android.lib.util.NullUtil;
 import com.android.lib.util.SPUtil;
+import com.android.lib.util.StringUtil;
 import com.android.lib.util.ToastUtil;
 import com.google.gson.reflect.TypeToken;
 
@@ -27,13 +28,25 @@ public  class NetFAdapter<A> implements NetI<A> {
     protected Context context;
     protected String url;
     protected BaseUIFrag frag;
+    protected boolean showtoast = false;
 
     public NetFAdapter(BaseUIFrag frag) {
         this.context = frag.getContext();
         this.frag = frag;
-        Type type = this.getClass().getGenericSuperclass();
-        getClass().getSimpleName();
     }
+
+
+    public NetFAdapter(BaseUIFrag frag,boolean isshow) {
+        this.frag = frag;
+        this.context = frag.getActivity();
+        showtoast = isshow;
+    }
+
+    public NetFAdapter(Context context,boolean isshow) {
+        this.context = context;
+        showtoast = isshow;
+    }
+
 
 
     @Override
@@ -50,24 +63,39 @@ public  class NetFAdapter<A> implements NetI<A> {
     public void onNetFinish(boolean haveData, String url, BaseResBean baseResBean) {
         if (!haveData) {
             if(cache){
-                onResult(true,baseResBean.getMessage(), null);
-            }else{
-                onResult(false,baseResBean.getMessage(), null);
-            }
-        } else {
-            if(cache){
-                ToastUtil.getInstance().showShort(context,"当前为无网络测试环境");
+                if(showtoast){
+                    ToastUtil.getInstance().showShort(context,"当前为无网络测试环境");
+                }
                 BaseResBean resBean = GsonUtil.getInstance().fromJson(SPUtil.getInstance().getStr(url),BaseResBean.class);
                 if(resBean ==null){
                     resBean = new BaseResBean();
-                    resBean.setCode("000");
+                    resBean.setCode("200");
                 }
                 deal(haveData,url,resBean);
             }else{
-                if(!NullUtil.isStrEmpty(baseResBean.getMessage())){
-                    ToastUtil.getInstance().showShort(context,baseResBean.getMessage());
+                onResult(false,baseResBean.getErrorMessage(), null);
+                if(!NullUtil.isStrEmpty(baseResBean.getMessage())&& showtoast){
+                    ToastUtil.getInstance().showShort(context.getApplicationContext(), StringUtil.getStr(baseResBean.getMessage())+StringUtil.getStr(baseResBean.getErrorMessage()));
                 }
-                SPUtil.getInstance().saveStr(url,GsonUtil.getInstance().toJson(baseResBean));
+            }
+        } else {
+            if(cache){
+                if(showtoast){
+                    ToastUtil.getInstance().showShort(context,"当前为无网络测试环境");
+                }
+                BaseResBean resBean = GsonUtil.getInstance().fromJson(SPUtil.getInstance().getStr(url),BaseResBean.class);
+                if(resBean ==null){
+                    resBean = new BaseResBean();
+                    resBean.setCode("200");
+                }
+                deal(haveData,url,resBean);
+            }else{
+                if(!NullUtil.isStrEmpty(baseResBean.getMessage())&& showtoast){
+                    ToastUtil.getInstance().showShort(context.getApplicationContext(),StringUtil.getStr(baseResBean.getMessage())+StringUtil.getStr(baseResBean.getErrorMessage()));
+                }
+                if(cache){
+                    SPUtil.getInstance().saveStr(url,GsonUtil.getInstance().toJson(baseResBean));
+                }
                 deal(haveData,url,baseResBean);
             }
 
