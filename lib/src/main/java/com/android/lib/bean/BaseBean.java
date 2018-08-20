@@ -184,4 +184,8 @@ public class BaseBean implements Serializable, Observable  {
 //        }
 //        return modelAdapter;
 //    }
+
+    public String getUniqueID(){
+        return toString();
+    }
 }

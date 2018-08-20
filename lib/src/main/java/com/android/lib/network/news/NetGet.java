@@ -59,7 +59,7 @@ public class NetGet {
     public static void postDataGetCookie(final Context context, final String url, final BaseBean reqBean, final NetI netI) {
         final String jsonstr = GsonUtil.getInstance().toJson(reqBean);
         if(test){
-            netI.onNetFinish(false, url+jsonstr, new BaseResBean());
+            netI.onNetFinish(false, url+reqBean.getUniqueID(), new BaseResBean());
             return;
         }
         LogUtil.E("input-->" + url);
@@ -69,7 +69,7 @@ public class NetGet {
             res.setErrorCode(ValueConstant.ERROR_CODE_NET_NO_CONNETCT);
             res.setErrorMessage(ValueConstant.ERROR_STR_NET_NO_CONNETCT);
             // res.setData(jsonstr);
-            netI.onNetFinish(false, url+jsonstr, res);
+            netI.onNetFinish(false, url+reqBean.getUniqueID(), res);
             return;
         }
 
@@ -119,13 +119,13 @@ public class NetGet {
                     if(deal!=null){
                         deal.onSuccess(res);
                     }
-                    netI.onNetFinish(false, url+jsonstr, res);
+                    netI.onNetFinish(false, url+reqBean.getUniqueID(), res);
                 } else {
                     BaseResBean baseResBean = GsonUtil.getInstance().fromJson(response,BaseResBean.class);
                     if(deal!=null){
                         deal.onSuccess(baseResBean);
                     }
-                    netI.onNetFinish(true, url+jsonstr, baseResBean);
+                    netI.onNetFinish(true, url+reqBean.getUniqueID(), baseResBean);
                 }
 
 
@@ -141,7 +141,7 @@ public class NetGet {
                     deal.onError(ex,isOnCallback);
                 }
 
-                netI.onNetFinish(false, url+jsonstr, baseResBean);
+                netI.onNetFinish(false, url+reqBean.getUniqueID(), baseResBean);
                 LogUtil.E(ex == null ? "Throwable" : "Throwable-->" + ex.getMessage());
             }
 
@@ -168,7 +168,7 @@ public class NetGet {
     public static void postData(final Context context, final String url, final BaseBean reqBean, final NetI netI) {
         final String jsonstr = GsonUtil.getInstance().toJson(reqBean);
         if(test){
-            netI.onNetFinish(false, url+jsonstr, new BaseResBean());
+            netI.onNetFinish(false, url+reqBean.getUniqueID(), new BaseResBean());
             return;
         }
         LogUtil.E("input-->" + url);
@@ -178,7 +178,7 @@ public class NetGet {
             res.setErrorCode(ValueConstant.ERROR_CODE_NET_NO_CONNETCT);
             res.setErrorMessage(ValueConstant.ERROR_STR_NET_NO_CONNETCT);
             // res.setData(jsonstr);
-            netI.onNetFinish(false, url+jsonstr, res);
+            netI.onNetFinish(false, url+reqBean.getUniqueID(), res);
             return;
         }
 
@@ -210,13 +210,13 @@ public class NetGet {
                     if(deal!=null){
                         deal.onSuccess(res);
                     }
-                    netI.onNetFinish(false, url+jsonstr, res);
+                    netI.onNetFinish(false, url+reqBean.getUniqueID(), res);
                 } else {
                     BaseResBean baseResBean = GsonUtil.getInstance().fromJson(response,BaseResBean.class);
                     if(deal!=null){
                         deal.onSuccess(baseResBean);
                     }
-                    netI.onNetFinish(true, url+jsonstr, baseResBean);
+                    netI.onNetFinish(true, url+reqBean.getUniqueID(), baseResBean);
                 }
             }
 
@@ -229,7 +229,7 @@ public class NetGet {
                 if(deal!=null){
                     deal.onError(ex,isOnCallback);
                 }
-                netI.onNetFinish(false, url+jsonstr, baseResBean);
+                netI.onNetFinish(false, url+reqBean.getUniqueID(), baseResBean);
                 LogUtil.E(ex == null ? "Throwable" : "Throwable-->" + ex.getMessage());
             }
 
@@ -256,7 +256,7 @@ public class NetGet {
     public static void getData(final Context context, final String url, final BaseBean reqBean, final NetI netI) {
         final String jsonstr = GsonUtil.getInstance().toJson(reqBean);
         if(test){
-            netI.onNetFinish(false, url+jsonstr, new BaseResBean());
+            netI.onNetFinish(false, url+reqBean.getUniqueID(), new BaseResBean());
             return;
         }
         LogUtil.E("input-->" + url);
@@ -266,7 +266,7 @@ public class NetGet {
             res.setErrorCode(ValueConstant.ERROR_CODE_NET_NO_CONNETCT);
             res.setErrorMessage(ValueConstant.ERROR_STR_NET_NO_CONNETCT);
             // res.setData(jsonstr);
-            netI.onNetFinish(false, url+jsonstr, res);
+            netI.onNetFinish(false, url+reqBean.getUniqueID(), res);
             return;
         }
 
@@ -299,14 +299,14 @@ public class NetGet {
                     if(deal!=null){
                         deal.onSuccess(res);
                     }
-                    netI.onNetFinish(false, url+jsonstr, res);
+                    netI.onNetFinish(false, url+reqBean.getUniqueID(), res);
                 } else {
                     BaseResBean baseResBean = GsonUtil.getInstance().fromJson(response,BaseResBean.class);
                     LogUtil.E(baseResBean.getResult());
                     if(deal!=null){
                         deal.onSuccess(baseResBean);
                     }
-                    netI.onNetFinish(true, url+jsonstr, baseResBean);
+                    netI.onNetFinish(true, url+reqBean.getUniqueID(), baseResBean);
                 }
             }
 
@@ -319,7 +319,7 @@ public class NetGet {
                 if(deal!=null){
                     deal.onError(ex,isOnCallback);
                 }
-                netI.onNetFinish(false, url+jsonstr, baseResBean);
+                netI.onNetFinish(false, url+reqBean.getUniqueID(), baseResBean);
                 LogUtil.E(ex == null ? "Throwable" : "Throwable-->" + ex.getMessage());
             }
 
