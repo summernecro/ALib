@@ -71,33 +71,21 @@ public  class NetFAdapter<A> implements NetI<A> {
                     resBean = new BaseResBean();
                     resBean.setCode("200");
                 }
-                deal(haveData,url,resBean);
+                deal(resBean.getResult()!=null,url,resBean);
             }else{
                 onResult(false,baseResBean.getErrorMessage(), null);
                 if(!NullUtil.isStrEmpty(baseResBean.getMessage())&& showtoast){
-                    ToastUtil.getInstance().showShort(context.getApplicationContext(), StringUtil.getStr(baseResBean.getMessage())+StringUtil.getStr(baseResBean.getErrorMessage()));
+                    ToastUtil.getInstance().showShort(context.getApplicationContext(),StringUtil.getStr(baseResBean.getMessage())+StringUtil.getStr(baseResBean.getErrorMessage()));
                 }
             }
         } else {
-            if(cache){
-                if(showtoast){
-                    ToastUtil.getInstance().showShort(context,"当前为无网络测试环境");
-                }
-                BaseResBean resBean = GsonUtil.getInstance().fromJson(SPUtil.getInstance().getStr(url),BaseResBean.class);
-                if(resBean ==null){
-                    resBean = new BaseResBean();
-                    resBean.setCode("200");
-                }
-                deal(haveData,url,resBean);
-            }else{
-                if(!NullUtil.isStrEmpty(baseResBean.getMessage())&& showtoast){
-                    ToastUtil.getInstance().showShort(context.getApplicationContext(),StringUtil.getStr(baseResBean.getMessage())+StringUtil.getStr(baseResBean.getErrorMessage()));
-                }
-                if(cache){
-                    SPUtil.getInstance().saveStr(url,GsonUtil.getInstance().toJson(baseResBean));
-                }
-                deal(haveData,url,baseResBean);
+            if(!NullUtil.isStrEmpty(baseResBean.getMessage())&& showtoast){
+                ToastUtil.getInstance().showShort(context.getApplicationContext(),StringUtil.getStr(baseResBean.getMessage())+StringUtil.getStr(baseResBean.getErrorMessage()));
             }
+            if(cache){
+                SPUtil.getInstance().saveStr(url,GsonUtil.getInstance().toJson(baseResBean));
+            }
+            deal(haveData,url,baseResBean);
 
         }
     }
