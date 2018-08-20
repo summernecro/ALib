@@ -57,19 +57,19 @@ public class NetGet {
     }
 
     public static void postDataGetCookie(final Context context, final String url, final BaseBean reqBean, final NetI netI) {
+        final String jsonstr = GsonUtil.getInstance().toJson(reqBean);
         if(test){
-            netI.onNetFinish(false, url, new BaseResBean());
+            netI.onNetFinish(false, url+jsonstr, new BaseResBean());
             return;
         }
         LogUtil.E("input-->" + url);
-        final String jsonstr = GsonUtil.getInstance().toJson(reqBean);
         LogUtil.E("input-->" + jsonstr);
         if (!netI.onNetStart(url, jsonstr)) {
             BaseResBean res = new BaseResBean();
             res.setErrorCode(ValueConstant.ERROR_CODE_NET_NO_CONNETCT);
             res.setErrorMessage(ValueConstant.ERROR_STR_NET_NO_CONNETCT);
             // res.setData(jsonstr);
-            netI.onNetFinish(false, url, res);
+            netI.onNetFinish(false, url+jsonstr, res);
             return;
         }
 
@@ -119,13 +119,13 @@ public class NetGet {
                     if(deal!=null){
                         deal.onSuccess(res);
                     }
-                    netI.onNetFinish(false, url, res);
+                    netI.onNetFinish(false, url+jsonstr, res);
                 } else {
                     BaseResBean baseResBean = GsonUtil.getInstance().fromJson(response,BaseResBean.class);
                     if(deal!=null){
                         deal.onSuccess(baseResBean);
                     }
-                    netI.onNetFinish(true, url, baseResBean);
+                    netI.onNetFinish(true, url+jsonstr, baseResBean);
                 }
 
 
@@ -141,7 +141,7 @@ public class NetGet {
                     deal.onError(ex,isOnCallback);
                 }
 
-                netI.onNetFinish(false, url, baseResBean);
+                netI.onNetFinish(false, url+jsonstr, baseResBean);
                 LogUtil.E(ex == null ? "Throwable" : "Throwable-->" + ex.getMessage());
             }
 
@@ -166,19 +166,19 @@ public class NetGet {
 
 
     public static void postData(final Context context, final String url, final BaseBean reqBean, final NetI netI) {
+        final String jsonstr = GsonUtil.getInstance().toJson(reqBean);
         if(test){
-            netI.onNetFinish(false, url, new BaseResBean());
+            netI.onNetFinish(false, url+jsonstr, new BaseResBean());
             return;
         }
         LogUtil.E("input-->" + url);
-        final String jsonstr = GsonUtil.getInstance().toJson(reqBean);
         LogUtil.E("input-->" + jsonstr);
         if (!netI.onNetStart(url, jsonstr)) {
             BaseResBean res = new BaseResBean();
             res.setErrorCode(ValueConstant.ERROR_CODE_NET_NO_CONNETCT);
             res.setErrorMessage(ValueConstant.ERROR_STR_NET_NO_CONNETCT);
             // res.setData(jsonstr);
-            netI.onNetFinish(false, url, res);
+            netI.onNetFinish(false, url+jsonstr, res);
             return;
         }
 
@@ -210,13 +210,13 @@ public class NetGet {
                     if(deal!=null){
                         deal.onSuccess(res);
                     }
-                    netI.onNetFinish(false, url, res);
+                    netI.onNetFinish(false, url+jsonstr, res);
                 } else {
                     BaseResBean baseResBean = GsonUtil.getInstance().fromJson(response,BaseResBean.class);
                     if(deal!=null){
                         deal.onSuccess(baseResBean);
                     }
-                    netI.onNetFinish(true, url, baseResBean);
+                    netI.onNetFinish(true, url+jsonstr, baseResBean);
                 }
             }
 
@@ -229,7 +229,7 @@ public class NetGet {
                 if(deal!=null){
                     deal.onError(ex,isOnCallback);
                 }
-                netI.onNetFinish(false, url, baseResBean);
+                netI.onNetFinish(false, url+jsonstr, baseResBean);
                 LogUtil.E(ex == null ? "Throwable" : "Throwable-->" + ex.getMessage());
             }
 
@@ -254,19 +254,19 @@ public class NetGet {
 
 
     public static void getData(final Context context, final String url, final BaseBean reqBean, final NetI netI) {
+        final String jsonstr = GsonUtil.getInstance().toJson(reqBean);
         if(test){
-            netI.onNetFinish(false, url, new BaseResBean());
+            netI.onNetFinish(false, url+jsonstr, new BaseResBean());
             return;
         }
         LogUtil.E("input-->" + url);
-        final String jsonstr = GsonUtil.getInstance().toJson(reqBean);
         LogUtil.E("input-->" + jsonstr);
         if (!netI.onNetStart(url, jsonstr)) {
             BaseResBean res = new BaseResBean();
             res.setErrorCode(ValueConstant.ERROR_CODE_NET_NO_CONNETCT);
             res.setErrorMessage(ValueConstant.ERROR_STR_NET_NO_CONNETCT);
             // res.setData(jsonstr);
-            netI.onNetFinish(false, url, res);
+            netI.onNetFinish(false, url+jsonstr, res);
             return;
         }
 
@@ -299,14 +299,14 @@ public class NetGet {
                     if(deal!=null){
                         deal.onSuccess(res);
                     }
-                    netI.onNetFinish(false, url, res);
+                    netI.onNetFinish(false, url+jsonstr, res);
                 } else {
                     BaseResBean baseResBean = GsonUtil.getInstance().fromJson(response,BaseResBean.class);
                     LogUtil.E(baseResBean.getResult());
                     if(deal!=null){
                         deal.onSuccess(baseResBean);
                     }
-                    netI.onNetFinish(true, url, baseResBean);
+                    netI.onNetFinish(true, url+jsonstr, baseResBean);
                 }
             }
 
@@ -319,7 +319,7 @@ public class NetGet {
                 if(deal!=null){
                     deal.onError(ex,isOnCallback);
                 }
-                netI.onNetFinish(false, url, baseResBean);
+                netI.onNetFinish(false, url+jsonstr, baseResBean);
                 LogUtil.E(ex == null ? "Throwable" : "Throwable-->" + ex.getMessage());
             }
 
@@ -344,19 +344,19 @@ public class NetGet {
 
 
     public static void file(Context context, final String url,List<KeyValue> list, final NetI netI) {
+        final String jsonstr = GsonUtil.getInstance().toJson(list);
         if(test){
-            netI.onNetFinish(false, url, new BaseResBean());
+            netI.onNetFinish(false, url+jsonstr, new BaseResBean());
             return;
         }
         LogUtil.E(url);
-        final String jsonstr = GsonUtil.getInstance().toJson(list);
         LogUtil.E(jsonstr);
         if (!netI.onNetStart(url, jsonstr)) {
             BaseResBean res = new BaseResBean();
             res.setErrorCode(ValueConstant.ERROR_CODE_NET_NO_CONNETCT);
             res.setErrorMessage(ValueConstant.ERROR_STR_NET_NO_CONNETCT);
             // res.setData(jsonstr);
-            netI.onNetFinish(false, url, res);
+            netI.onNetFinish(false, url+jsonstr, res);
             return;
         }
 
@@ -386,13 +386,13 @@ public class NetGet {
                     if(deal!=null){
                         deal.onSuccess(res);
                     }
-                    netI.onNetFinish(false, url, res);
+                    netI.onNetFinish(false, url+jsonstr, res);
                 } else {
                     BaseResBean baseResBean = GsonUtil.getInstance().fromJson(response.toString(), BaseResBean.class);
                     if(deal!=null){
                         deal.onSuccess(baseResBean);
                     }
-                    netI.onNetFinish(true, url, baseResBean);
+                    netI.onNetFinish(true, url+jsonstr, baseResBean);
                 }
             }
 
@@ -405,7 +405,7 @@ public class NetGet {
                 if(deal!=null){
                     deal.onError(ex,isOnCallback);
                 }
-                netI.onNetFinish(false, url, baseResBean);
+                netI.onNetFinish(false, url+jsonstr, baseResBean);
                 LogUtil.E(ex == null ? "" : ex.getMessage());
             }
 
