@@ -22,6 +22,7 @@ import com.android.lib.util.fragment.two.FragManager2;
 import com.android.lib.util.system.HandleUtil;
 import com.android.lib.util.video.TipUtil;
 import com.android.lib.view.bottommenu.Msg;
+import com.github.florent37.viewanimator.ViewAnimator;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -101,6 +102,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
                 baseUIRoot = view.findViewById(R.id.container);
                 initaa(baseUIFrag.getClass());
                 baseUIRoot.addView(getP().getU().getBind().getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                animRoot(getP().getU().getBind().getRoot());
                 getP().getU().setView(getView());
                 getP().getU().initUI();
                 unbinder = ButterKnife.bind(baseUIFrag, baseUIRoot);
@@ -114,6 +116,9 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
         return 300;
     }
 
+    protected void animRoot(View root){
+        //ViewAnimator.animate(root).duration(300).fadeIn().start();
+    }
 
     public void initdelay() {
         if(getView()==null){

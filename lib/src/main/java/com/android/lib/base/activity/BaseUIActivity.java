@@ -45,6 +45,7 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
         baseUIRoot = findViewById(R.id.act_base_root);
         if(getP().getU().getBind()!=null){
             baseUIRoot.addView(getP().getU().getBind().getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            animRoot(getP().getU().getBind().getRoot());
         }
         getP().getD().initDA();
         getP().getU().initUI();
@@ -57,6 +58,10 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
 
     protected void initNow(){
 
+    }
+
+    protected void animRoot(View root){
+        //ViewAnimator.animate(root).duration(300).fadeIn().start();
     }
 
     protected int getBaseUILayout() {
