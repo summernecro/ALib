@@ -47,6 +47,7 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
             baseUIRoot.addView(getP().getU().getBind().getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             animRoot(getP().getU().getBind().getRoot());
         }
+        getP().getV().initValue();
         getP().getD().initDA();
         getP().getU().initUI();
         initNow();
@@ -77,6 +78,18 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
             initbb(getClass());
         }
         return opes;
+    }
+
+    public A getPU(){
+        return getP().getU();
+    }
+
+    public B getPD(){
+        return getP().getD();
+    }
+
+    public C getPV(){
+        return getP().getV();
     }
 
 

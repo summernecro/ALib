@@ -68,6 +68,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
         setArguments(new Bundle());
         opes = new BaseOpes<>(null, null,null);
         initcc(getClass());
+        getP().getV().initValue();
         initbb(getClass());
         getP().getD().initDA();
     }
@@ -174,6 +175,17 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
         return opes;
     }
 
+    public A getPU(){
+        return getP().getU();
+    }
+
+    public B getPD(){
+        return getP().getD();
+    }
+
+    public C getPV(){
+        return getP().getV();
+    }
 
     private void initcc(Class<?> c) {
         if (c == null) {

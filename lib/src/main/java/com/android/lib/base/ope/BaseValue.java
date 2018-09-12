@@ -6,4 +6,7 @@ import com.android.lib.bean.BaseBean;
 
 public class BaseValue extends BaseBean{
 
+    public void initValue(){
+
+    }
 }
