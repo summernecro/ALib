@@ -48,7 +48,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
 
     private boolean isFiistVisibleinit = false;
 
-    private ViewGroup baseUIRoot;
+    protected ViewGroup baseUIRoot;
 
 
     private LoadUtil loadUtil = new LoadUtil();
