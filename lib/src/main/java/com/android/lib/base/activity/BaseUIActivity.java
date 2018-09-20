@@ -106,6 +106,7 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
                 opes.setVa(cc);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtil.E(e.getMessage());
             }
         } else {
             initcc(c.getSuperclass());
@@ -128,6 +129,7 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
                 opes.setDa(bb);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtil.E(e.getMessage());
             }
         } else {
             initbb(c.getSuperclass());
@@ -150,6 +152,7 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
                 opes.setUi(aa);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtil.E(e.getMessage());
             }
         } else {
             initaa(c.getSuperclass());

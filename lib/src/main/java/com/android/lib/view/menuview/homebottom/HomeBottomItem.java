@@ -18,18 +18,22 @@ public class HomeBottomItem extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        super.onTouchEvent(event);
-        switch (event.getAction()) {
+        return true;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 getChildAt(0).setScaleX(0.9f);
                 getChildAt(0).setScaleY(0.9f);
-                return true;
+                break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 getChildAt(0).setScaleX(1f);
                 getChildAt(0).setScaleY(1f);
-                return true;
+                break;
         }
-        return true;
+        return super.dispatchTouchEvent(ev);
     }
 }

@@ -89,6 +89,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View group = inflater.inflate(getBaseUILayout(),container,false);
         fragIs.onCreateView(inflater,container,savedInstanceState);
+        baseUIRoot = group.findViewById(R.id.container);
         return group;
     }
 
@@ -100,7 +101,6 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
         HandleUtil.getInstance().postDelayed(new Runnable() {
             @Override
             public void run() {
-                baseUIRoot = view.findViewById(R.id.container);
                 initaa(baseUIFrag.getClass());
                 baseUIRoot.addView(getP().getU().getBind().getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 animRoot(getP().getU().getBind().getRoot());
@@ -200,6 +200,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
                 opes.setVa(cc);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtil.E(e.getMessage());
             }
         } else {
             initcc(c.getSuperclass());
@@ -220,6 +221,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
                 opes.setDa(bb);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtil.E(e.getMessage());
             }
         } else {
             initbb(c.getSuperclass());
@@ -242,6 +244,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
                 opes.setUi(aa);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtil.E(e.getMessage());
             }
         } else {
             initaa(c.getSuperclass());

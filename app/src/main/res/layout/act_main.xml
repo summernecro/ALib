@@ -29,8 +29,8 @@
     android:id="@+id/viewpager"
     android:text="1234"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
-<RelativeLayout
+    android:layout_height="100dp" />
+<com.android.lib.view.bottommenu.BottomMenuView
 
     android:background="@color/color_blue_300"
     app:layout_constraintLeft_toLeftOf="parent"
