@@ -65,7 +65,7 @@ public  class NetAdapter<A> implements NetI<A> {
     }
 
     @Override
-    public void onNetFinish(boolean haveData, String url, BaseResBean baseResBean) {
+    public void onNetFinish(boolean haveData, final String url, final BaseResBean baseResBean) {
         if (!haveData) {
             if(cache){
                 if(showtoast){
@@ -88,7 +88,12 @@ public  class NetAdapter<A> implements NetI<A> {
                 ToastUtil.getInstance().showShort(context.getApplicationContext(),StringUtil.getStr(baseResBean.getMessage())+StringUtil.getStr(baseResBean.getErrorMessage()));
             }
             if(cache){
-                SPUtil.getInstance().saveStr(url,GsonUtil.getInstance().toJson(baseResBean));
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SPUtil.getInstance().saveStr(url,GsonUtil.getInstance().toJson(baseResBean));
+                    }
+                }).start();
             }
             deal(haveData,url,baseResBean);
 
