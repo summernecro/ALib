@@ -2,15 +2,16 @@ package com.android.lib.base.activity;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.lib.R;
 import com.android.lib.base.ope.BaseDAOpe;
 import com.android.lib.base.ope.BaseOpes;
 import com.android.lib.base.ope.BaseUIOpe;
+import com.android.lib.base.ope.BaseValue;
 import com.android.lib.util.LogUtil;
-import com.android.lib.util.fragment.two.FragManager2;
-import com.android.lib.view.bottommenu.MessageEvent;
+import com.android.lib.view.bottommenu.Msg;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -25,11 +26,11 @@ import butterknife.ButterKnife;
 /**
  * Created by summer on 2016/4/16 0016 11:51.
  */
-public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe> extends BaseActivity {
+public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C extends BaseValue> extends BaseActivity implements View.OnClickListener{
 
     protected ViewGroup baseUIRoot;
 
-    protected BaseOpes<A, B> opes;
+    protected BaseOpes<A, B,C> opes;
 
     private String moudle;
 
@@ -44,7 +45,9 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe> e
         baseUIRoot = findViewById(R.id.act_base_root);
         if(getP().getU().getBind()!=null){
             baseUIRoot.addView(getP().getU().getBind().getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            animRoot(getP().getU().getBind().getRoot());
         }
+        getP().getV().initValue();
         getP().getD().initDA();
         getP().getU().initUI();
         initNow();
@@ -58,19 +61,60 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe> e
 
     }
 
+    protected void animRoot(View root){
+        //ViewAnimator.animate(root).duration(300).fadeIn().start();
+    }
+
     protected int getBaseUILayout() {
         return R.layout.act_baseui;
     }
 
 
-    public BaseOpes<A, B> getP() {
+    public BaseOpes<A, B,C> getP() {
         if (opes == null) {
-            opes= new BaseOpes<>(null,null);
+            opes= new BaseOpes<>(null,null,null);
+            initcc(getClass());
             initaa(getClass());
             initbb(getClass());
         }
         return opes;
     }
+
+    public A getPU(){
+        return getP().getU();
+    }
+
+    public B getPD(){
+        return getP().getD();
+    }
+
+    public C getPV(){
+        return getP().getV();
+    }
+
+
+    private void initcc(Class<?> c) {
+        if (c == null) {
+            opes.setVa((C)(new BaseValue()));
+            return;
+        }
+        if (c.getGenericSuperclass() instanceof ParameterizedType) {
+            Class<C> b = (Class<C>) ((ParameterizedType) c.getGenericSuperclass()).getActualTypeArguments()[2];
+            try {
+                Constructor<C> bc = b.getConstructor();
+                C cc = bc.newInstance();
+                opes.setVa(cc);
+            } catch (Exception e) {
+                e.printStackTrace();
+                LogUtil.E(e.getMessage());
+            }
+        } else {
+            initcc(c.getSuperclass());
+        }
+    }
+
+
+
 
     private void initbb(Class<?> c) {
         if (c == null) {
@@ -85,6 +129,7 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe> e
                 opes.setDa(bb);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtil.E(e.getMessage());
             }
         } else {
             initbb(c.getSuperclass());
@@ -107,16 +152,33 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe> e
                 opes.setUi(aa);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtil.E(e.getMessage());
             }
         } else {
             initaa(c.getSuperclass());
         }
     }
 
+    @Override
+    public void onClick(View v) {
 
+    }
+
+    /**
+     * 消息总线处理
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void dealMesage(MessageEvent event) {
-        LogUtil.E(getClass().getName());
+    public void dealMesage(Msg event) {
+        LogUtil.E(event.dealer + ":" + getClass().getName());
+        if (!event.dealer.equals(getClass().getName())) {
+            event.isme = false;
+            return;
+        }
+        update(event);
+    }
+
+    protected void update(Msg event){
+
     }
 
     @Override

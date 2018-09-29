@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by ${viwmox} on 2016-12-21.
  */
 
-public class BaseOpes<A extends BaseUIOpe, B extends BaseDAOpe> implements Serializable {
+public class BaseOpes<A extends BaseUIOpe, B extends BaseDAOpe,C extends BaseValue> implements Serializable {
 
     /**
      * 操作者
@@ -17,10 +17,16 @@ public class BaseOpes<A extends BaseUIOpe, B extends BaseDAOpe> implements Seria
      */
     B da;
 
+    /**数据*/
+    C va;
 
-    public BaseOpes(A ui, B da) {
+
+
+
+    public BaseOpes(A ui, B da,C va) {
         this.ui = ui;
         this.da = da;
+        this.va = va;
     }
 
     public B getD() {
@@ -37,5 +43,13 @@ public class BaseOpes<A extends BaseUIOpe, B extends BaseDAOpe> implements Seria
 
     public void setUi(A ui) {
         this.ui = ui;
+    }
+
+    public C getV() {
+        return va;
+    }
+
+    public void setVa(C va) {
+        this.va = va;
     }
 }

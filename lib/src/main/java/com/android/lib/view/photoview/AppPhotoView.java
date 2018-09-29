@@ -5,7 +5,8 @@ import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
-import uk.co.senab.photoview.PhotoView;
+import com.luck.picture.lib.photoview.PhotoView;
+
 
 /**
  * Created by ${viwmox} on 2016-11-01.
@@ -20,8 +21,8 @@ public class AppPhotoView extends PhotoView {
     @Override
     public void setImageDrawable(Drawable drawable) {
         super.setImageDrawable(drawable);
-
-        Matrix m = getDisplayMatrix();
+        Matrix m = new Matrix();
+         getDisplayMatrix(m);
         float[] values = new float[9];
         m.getValues(values);
 

@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 
 import com.android.lib.databinding.ActBaseuiBinding;
+import com.android.lib.util.LogUtil;
 
 /**
  * ui处理操作者 处理对象 uibean fragment view
@@ -75,6 +76,7 @@ public class BaseUIOpe<A extends ViewDataBinding> {
                     e.printStackTrace();
                 } catch (InvocationTargetException e) {
                     e.printStackTrace();
+                    LogUtil.E(e.getMessage());
                 }
             } else {
                 viewDataBinding = getBind();

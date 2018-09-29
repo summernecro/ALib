@@ -53,15 +53,7 @@ public class LoadUtil {
             "SemiCircleSpinIndicator",
             "com.wang.avi.sample.MyCustomIndicator"
     };
-    private static LoadUtil instance;
     ArrayList<MyDialog> dialogs = new ArrayList<>();
-
-    public static LoadUtil getInstance() {
-        if (instance == null) {
-            instance = new LoadUtil();
-        }
-        return instance;
-    }
 
     public void onStartLoading(Context activity, String tag) {
         if(activity==null){
@@ -120,7 +112,7 @@ public class LoadUtil {
 
     View loadingView;
 
-    public static Indicator indicator;
+    private Indicator indicator;
 
     public void startLoading(Context context,ViewGroup viewGroup){
        if( viewGroup.getChildAt(0) instanceof ViewGroup){
@@ -135,7 +127,16 @@ public class LoadUtil {
            avLoadingIndicatorView.setIndicator(indicator==null?new BallTrianglePathIndicator():indicator);
            avLoadingIndicatorView.show();
        }
+    }
 
+
+    public void startLoadingDefault(Context context,ViewGroup viewGroup,int color){
+        loadingView = LayoutInflater.from(context).inflate(R.layout.dialog_loading,null);
+        AVLoadingIndicatorView avLoadingIndicatorView = (AVLoadingIndicatorView) loadingView.findViewById(R.id.av);
+        avLoadingIndicatorView.setIndicatorColor(color);
+        viewGroup.addView(loadingView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        avLoadingIndicatorView.setIndicator(indicator==null?new BallTrianglePathIndicator():indicator);
+        avLoadingIndicatorView.show();
     }
 
     public void stopLoading(ViewGroup viewGroup){
@@ -145,5 +146,11 @@ public class LoadUtil {
     }
 
 
+    public Indicator getIndicator() {
+        return indicator;
+    }
 
+    public void setIndicator(Indicator indicator) {
+        this.indicator = indicator;
+    }
 }

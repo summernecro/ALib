@@ -1,14 +1,11 @@
 package com.android.lib.base.fragment;
 
-import android.animation.Animator;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.os.HandlerThread;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 
 import com.android.lib.R;
 import com.android.lib.base.activity.BaseUIActivity;
@@ -16,15 +13,16 @@ import com.android.lib.base.interf.FragI;
 import com.android.lib.base.ope.BaseDAOpe;
 import com.android.lib.base.ope.BaseOpes;
 import com.android.lib.base.ope.BaseUIOpe;
+import com.android.lib.base.ope.BaseValue;
 import com.android.lib.constant.ValueConstant;
-import com.android.lib.databinding.FragDialogCenterBinding;
 import com.android.lib.databinding.LayoutBaseuiBinding;
 import com.android.lib.util.LoadUtil;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.fragment.two.FragManager2;
 import com.android.lib.util.system.HandleUtil;
 import com.android.lib.util.video.TipUtil;
-import com.android.lib.view.bottommenu.MessageEvent;
+import com.android.lib.view.bottommenu.Msg;
+import com.github.florent37.viewanimator.ViewAnimator;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -39,18 +37,18 @@ import butterknife.Unbinder;
 /**
  * Created by summer on 2016/4/16 0016 16:03.
  */
-public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> extends BaseFrg implements View.OnClickListener, View.OnLongClickListener {
+public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C extends BaseValue> extends BaseFrg implements View.OnClickListener, View.OnLongClickListener {
 
 
     private Unbinder unbinder;
 
-    private BaseOpes<A, B> opes;
+    private BaseOpes<A, B,C> opes;
 
     private FragIs fragIs = new FragIs();
 
     private boolean isFiistVisibleinit = false;
 
-    private ViewGroup baseUIRoot;
+    protected ViewGroup baseUIRoot;
 
 
     private LoadUtil loadUtil = new LoadUtil();
@@ -68,7 +66,9 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
         baseUIFrag = this;
         LogUtil.E(this.getClass());
         setArguments(new Bundle());
-        opes = new BaseOpes<>(null, null);
+        opes = new BaseOpes<>(null, null,null);
+        initcc(getClass());
+        getP().getV().initValue();
         initbb(getClass());
         getP().getD().initDA();
     }
@@ -89,6 +89,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View group = inflater.inflate(getBaseUILayout(),container,false);
         fragIs.onCreateView(inflater,container,savedInstanceState);
+        baseUIRoot = group.findViewById(R.id.container);
         return group;
     }
 
@@ -96,17 +97,17 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
-        initNow();
+
         HandleUtil.getInstance().postDelayed(new Runnable() {
             @Override
             public void run() {
-                baseUIRoot = view.findViewById(R.id.container);
                 initaa(baseUIFrag.getClass());
                 baseUIRoot.addView(getP().getU().getBind().getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                animRoot(getP().getU().getBind().getRoot());
                 getP().getU().setView(getView());
                 getP().getU().initUI();
                 unbinder = ButterKnife.bind(baseUIFrag, baseUIRoot);
-                initdelay();
+                initNow();
             }
         }, delayTime());
         fragIs.onViewCreated(view,savedInstanceState);
@@ -116,6 +117,9 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
         return 300;
     }
 
+    protected void animRoot(View root){
+        //ViewAnimator.animate(root).duration(300).fadeIn().start();
+    }
 
     public void initdelay() {
         if(getView()==null){
@@ -167,9 +171,42 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
     /**
      * 获取操作类
      */
-    public BaseOpes<A, B> getP() {
+    public BaseOpes<A, B,C> getP() {
         return opes;
     }
+
+    public A getPU(){
+        return getP().getU();
+    }
+
+    public B getPD(){
+        return getP().getD();
+    }
+
+    public C getPV(){
+        return getP().getV();
+    }
+
+    private void initcc(Class<?> c) {
+        if (c == null) {
+            opes.setVa((C)(new BaseValue()));
+            return;
+        }
+        if (c.getGenericSuperclass() instanceof ParameterizedType) {
+            Class<C> b = (Class<C>) ((ParameterizedType) c.getGenericSuperclass()).getActualTypeArguments()[2];
+            try {
+                Constructor<C> bc = b.getConstructor();
+                C cc = bc.newInstance();
+                opes.setVa(cc);
+            } catch (Exception e) {
+                e.printStackTrace();
+                LogUtil.E(e.getMessage());
+            }
+        } else {
+            initcc(c.getSuperclass());
+        }
+    }
+
 
     private void initbb(Class<?> c) {
         if (c == null) {
@@ -184,6 +221,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
                 opes.setDa(bb);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtil.E(e.getMessage());
             }
         } else {
             initbb(c.getSuperclass());
@@ -206,6 +244,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
                 opes.setUi(aa);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtil.E(e.getMessage());
             }
         } else {
             initaa(c.getSuperclass());
@@ -240,12 +279,17 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe> exten
      * 消息总线处理
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void dealMesage(MessageEvent event) {
+    public void dealMesage(Msg event) {
         LogUtil.E(event.dealer + ":" + getClass().getName());
         if (!event.dealer.equals(getClass().getName())) {
             event.isme = false;
             return;
         }
+        update(event);
+    }
+
+    protected void update(Msg event){
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
