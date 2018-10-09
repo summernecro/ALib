@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 import butterknife.OnClick;
 
-public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe,MainValue> implements View.OnClickListener {
+public class MainAct extends BaseUIActivity<MainUIOpe,MainValue> implements View.OnClickListener {
 
     public static long time = 0;
 //    @Override
@@ -59,13 +59,15 @@ public class MainAct extends BaseUIActivity<MainUIOpe,MainDAOpe,MainValue> imple
         //getP().getV().getLoadUtil().startLoadingDefault(this, (ViewGroup) getP().getU().getBind().bottommenu,getResources().getColor(R.color.color_red_500));
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new VideoAct());
-        fragments.add(new TextAct());
-        fragments.add(new SettAct());
-        getP().getU().getBind().viewpager.setAdapter(new AppBasePagerAdapter2(getSupportFragmentManager(),getActivity(),fragments));
+        fragments.add(new VideoAct());
+        fragments.add(new VideoAct());
+        fragments.add(new VideoAct());
+        fragments.add(new VideoAct());
+        getP().getU().initViewPager(fragments);
+
 
     }
 
-    @OnClick({R.id.dddd})
     public void onClick(View v) {
         ToastUtil.getInstance().showShort(getActivity(),"fdfdfdf");
         NetGet.downLoadFile("http://www.summernecro.com:8888/record/20170629/20170626154234Wb7TFgsJ.jpg", Environment.getExternalStorageDirectory() + "/records/1.jpg", new NetAdapter(this) {

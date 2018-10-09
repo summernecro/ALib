@@ -53,9 +53,9 @@ public class AppsDataBindingAdapter extends RecyclerView.Adapter<AppViewHolder> 
         viewDataBinding.getRoot().setTag(R.id.data, list.get(position));
         viewDataBinding.getRoot().setTag(R.id.position, position);
         viewDataBinding.getRoot().setOnClickListener(this);
-        viewDataBinding.getRoot().setOnLongClickListener(this);
-        viewDataBinding.setVariable(vari, list.get(position));
-        viewDataBinding.executePendingBindings();//加一行，问题解决
+//        viewDataBinding.getRoot().setOnLongClickListener(this);
+//        viewDataBinding.setVariable(vari, list.get(position));
+//        viewDataBinding.executePendingBindings();//加一行，问题解决
     }
 
     @Override

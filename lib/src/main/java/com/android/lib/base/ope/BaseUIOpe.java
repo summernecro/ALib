@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.ViewDataBinding;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.base.fragment.BaseUIFrag;
@@ -19,7 +20,7 @@ import com.android.lib.util.LogUtil;
 /**
  * ui处理操作者 处理对象 uibean fragment view
  */
-public class BaseUIOpe<A extends ViewDataBinding> {
+public class BaseUIOpe<A extends ViewDataBinding> implements View.OnClickListener,View.OnLongClickListener{
 
     private A bind;
     private Context context;
@@ -35,6 +36,14 @@ public class BaseUIOpe<A extends ViewDataBinding> {
         this.context = context;
         bind = initViewDataBinding();
         bind.executePendingBindings();
+        View[] clickviews = initOnClick();
+        View[] longclickviews = initOnLongClick();
+        for(int i=0;i<clickviews.length;i++){
+            clickviews[i].setOnClickListener(this);
+        }
+        for(int i=0;i<longclickviews.length;i++){
+            longclickviews[i].setOnLongClickListener(this);
+        }
     }
 
     public void init(BaseUIFrag frag) {
@@ -87,7 +96,7 @@ public class BaseUIOpe<A extends ViewDataBinding> {
 
 
 
-    public A getBind() {
+    protected A getBind() {
         return bind;
     }
 
@@ -110,5 +119,37 @@ public class BaseUIOpe<A extends ViewDataBinding> {
 
     public void setView(View view) {
         this.view = view;
+    }
+
+    @Override
+    public void onClick(View v) {
+      if(getFrag()==null){
+          getActivity().onClick(v);
+      }else{
+          getFrag().onClick(v);
+      }
+    }
+
+    protected  View[] initOnClick(){
+        return new View[]{};
+    }
+
+    protected  View[] initOnLongClick(){
+        return new View[]{};
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        return true;
+    }
+
+    public void added(ViewGroup viewGroup){
+        if(getBind()!=null){
+            viewGroup.addView(getBind().getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        }
+    }
+
+    public void animRoot(){
+        //ViewAnimator.animate(root).duration(300).fadeIn().start();
     }
 }

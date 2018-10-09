@@ -7,7 +7,7 @@ def dbflow_version = "4.2.4"
 def kotlin_version = '1.1.51'
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.2'
+//    buildToolsVersion '27.0.2'
     useLibrary 'org.apache.http.legacy'
     //android 6.0 之后 取消支持 Apache HTTP 客户端，要继续使用 Apache HTTP API，您必须先在 build.gradle 文件中声明以下编译时依赖项：
     defaultConfig {
@@ -101,6 +101,8 @@ dependencies {
 
     compile 'com.wang.avi:library:2.1.3'//加载动画
 
+    compile 'com.romandanylyk:pageindicatorview:1.0.2'//选项卡底部导航
+
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.hedgehog.ratingbar:app:1.1.2'
 
@@ -119,6 +121,8 @@ dependencies {
 
     compile 'org.projectlombok:lombok:1.16.20'
     annotationProcessor 'org.projectlombok:lombok:1.16.20'
+
+    compile 'com.jzxiang.pickerview:TimePickerDialog:1.0.1'//日期选择
 
     //    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"

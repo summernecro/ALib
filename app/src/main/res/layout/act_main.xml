@@ -1,43 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="act_main"
             type="String" />
     </data>
-
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:id="@+id/rootr"
         android:background="@color/white"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/dddd"
-            android:gravity="center"
-            android:text="123444"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
 
 <android.support.v4.view.ViewPager
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/dddd"
-    app:layout_constraintBottom_toTopOf="@+id/bottommenu"
+    android:visibility="gone"
     android:id="@+id/viewpager"
     android:text="1234"
     android:layout_width="match_parent"
-    android:layout_height="100dp" />
-<com.android.lib.view.bottommenu.BottomMenuView
+    android:layout_height="match_parent" />
 
-    android:background="@color/color_blue_300"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:id="@+id/bottommenu"
-    android:layout_width="match_parent"
-    android:layout_height="50dp" />
-    </LinearLayout>
+
+    <com.rd.PageIndicatorView
+        android:id="@+id/pageIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:piv_animationType="scale"
+        app:piv_dynamicCount="true"
+        app:piv_interactiveAnimation="true"
+        app:piv_selectedColor="@color/color_grey_50"
+        app:piv_unselectedColor="@color/color_grey_300"
+        app:piv_viewPager="@id/viewpager"
+        app:piv_padding="12dp"
+        app:piv_radius="8dp" />
+
+        <com.android.lib.view.textview.SharpTextView
+            android:focusable="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:text="登录"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </RelativeLayout>
 </layout>

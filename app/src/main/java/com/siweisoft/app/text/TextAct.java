@@ -8,7 +8,7 @@ import com.android.lib.base.ope.BaseValue;
 import com.android.lib.util.LogUtil;
 import com.android.lib.view.bottommenu.Msg;
 
-public class TextAct extends BaseUIFrag<TextUIOpe,BaseDAOpe,BaseValue> {
+public class TextAct extends BaseUIFrag<TextUIOpe,BaseValue> {
 
     protected void update(Msg event) {
         LogUtil.E(event.toString());

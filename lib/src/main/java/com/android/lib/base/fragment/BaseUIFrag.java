@@ -1,13 +1,16 @@
 package com.android.lib.base.fragment;
 
+import android.content.Context;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.lib.R;
+import com.android.lib.base.activity.BaseActivity;
 import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.base.interf.FragI;
 import com.android.lib.base.ope.BaseDAOpe;
@@ -37,12 +40,12 @@ import butterknife.Unbinder;
 /**
  * Created by summer on 2016/4/16 0016 16:03.
  */
-public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C extends BaseValue> extends BaseFrg implements View.OnClickListener, View.OnLongClickListener {
+public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extends Fragment implements View.OnClickListener, View.OnLongClickListener {
 
 
     private Unbinder unbinder;
 
-    private BaseOpes<A, B,C> opes;
+    private BaseOpes<A,C> opes;
 
     private FragIs fragIs = new FragIs();
 
@@ -61,16 +64,20 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
 
     private LayoutBaseuiBinding layoutBaseuiBinding;
 
+    private BaseUIActivity activity;
+
+    private  BaseUIFrag frag;
+
+    private long uniqueid;
+
 
     public BaseUIFrag() {
         baseUIFrag = this;
         LogUtil.E(this.getClass());
         setArguments(new Bundle());
-        opes = new BaseOpes<>(null, null,null);
+        opes = new BaseOpes<>(null,null);
         initcc(getClass());
         getP().getV().initValue();
-        initbb(getClass());
-        getP().getD().initDA();
     }
 
 
@@ -78,6 +85,11 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        synchronized (BaseUIActivity.class){
+            uniqueid = System.currentTimeMillis();
+            LogUtil.E("uniqueid:"+uniqueid);
+        }
+        frag = this;
         if(is注册事件总线()){
             EventBus.getDefault().register(this);
         }
@@ -102,8 +114,8 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
             @Override
             public void run() {
                 initaa(baseUIFrag.getClass());
-                baseUIRoot.addView(getP().getU().getBind().getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                animRoot(getP().getU().getBind().getRoot());
+                getPU().added(baseUIRoot);
+                getPU().animRoot();
                 getP().getU().setView(getView());
                 getP().getU().initUI();
                 unbinder = ButterKnife.bind(baseUIFrag, baseUIRoot);
@@ -111,6 +123,14 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
             }
         }, delayTime());
         fragIs.onViewCreated(view,savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof BaseUIActivity) {
+            activity = (BaseUIActivity) context;
+        }
     }
 
     protected int delayTime(){
@@ -171,16 +191,12 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
     /**
      * 获取操作类
      */
-    public BaseOpes<A, B,C> getP() {
+    public BaseOpes<A,C> getP() {
         return opes;
     }
 
     public A getPU(){
         return getP().getU();
-    }
-
-    public B getPD(){
-        return getP().getD();
     }
 
     public C getPV(){
@@ -193,7 +209,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
             return;
         }
         if (c.getGenericSuperclass() instanceof ParameterizedType) {
-            Class<C> b = (Class<C>) ((ParameterizedType) c.getGenericSuperclass()).getActualTypeArguments()[2];
+            Class<C> b = (Class<C>) ((ParameterizedType) c.getGenericSuperclass()).getActualTypeArguments()[1];
             try {
                 Constructor<C> bc = b.getConstructor();
                 C cc = bc.newInstance();
@@ -208,25 +224,6 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
     }
 
 
-    private void initbb(Class<?> c) {
-        if (c == null) {
-            opes.setDa((B)(new BaseDAOpe()));
-            return;
-        }
-        if (c.getGenericSuperclass() instanceof ParameterizedType) {
-            Class<B> b = (Class<B>) ((ParameterizedType) c.getGenericSuperclass()).getActualTypeArguments()[1];
-            try {
-                Constructor<B> bc = b.getConstructor();
-                B bb = bc.newInstance();
-                opes.setDa(bb);
-            } catch (Exception e) {
-                e.printStackTrace();
-                LogUtil.E(e.getMessage());
-            }
-        } else {
-            initbb(c.getSuperclass());
-        }
-    }
 
 
     private void initaa(Class<?> c) {
@@ -243,8 +240,8 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
                 aa.init(getBaseUIFrag());
                 opes.setUi(aa);
             } catch (Exception e) {
-                e.printStackTrace();
                 LogUtil.E(e.getMessage());
+                e.printStackTrace();
             }
         } else {
             initaa(c.getSuperclass());
@@ -280,8 +277,8 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void dealMesage(Msg event) {
-        LogUtil.E(event.dealer + ":" + getClass().getName());
-        if (!event.dealer.equals(getClass().getName())) {
+        LogUtil.E(event.dealer + ":" + baseUIFrag.getClass().getName());
+        if (!event.dealer.equals(uniqueid+"")) {
             event.isme = false;
             return;
         }
@@ -337,7 +334,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
     }
 
     public BaseUIActivity getBaseUIAct() {
-        return (BaseUIActivity) getBaseAct();
+        return activity;
     }
 
     public FragManager2 getFragM() {
@@ -351,4 +348,10 @@ public abstract class BaseUIFrag<A extends BaseUIOpe, B extends BaseDAOpe,C exte
     public BaseUIFrag getBaseUIFrag() {
         return baseUIFrag;
     }
+
+    public long getUniqueid() {
+        return uniqueid;
+    }
+
+
 }

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.android.lib.R;
 import com.android.lib.base.fragment.BaseUIFrag;
 
-public class DiaLogCenterFrag extends BaseUIFrag<DialogCenterUIOpe,DialogCenterDAOpe,DiaLogCenterValue> {
+public class DiaLogCenterFrag extends BaseUIFrag<DialogCenterUIOpe,DiaLogCenterValue> {
 
     private View v;
 

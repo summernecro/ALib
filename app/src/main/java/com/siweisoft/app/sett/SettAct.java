@@ -18,7 +18,7 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.OnClick;
 import butterknife.Optional;
 
-public class SettAct extends BaseUIFrag<SettUIOpe,BaseDAOpe,BaseValue> {
+public class SettAct extends BaseUIFrag<SettUIOpe,BaseValue> {
 
 
     protected void update(Msg event) {
