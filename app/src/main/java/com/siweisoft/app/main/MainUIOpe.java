@@ -25,10 +25,6 @@ public class MainUIOpe extends BaseUIOpe<ActMainBinding>{
 
     public void initViewPager(List<Fragment> fragments){
         getBind().viewpager.setAdapter(new AppBasePagerAdapter2(getActivity().getSupportFragmentManager(),getActivity(),fragments));
-        getBind().pageIndicatorView.setCount(fragments.size());
-        getBind().pageIndicatorView.setViewPager(getBind().viewpager);
-        getBind().pageIndicatorView.setSelectedColor(getActivity().getResources().getColor(R.color.black));
-        getBind().pageIndicatorView.setAnimationType(AnimationType.SCALE);
     }
 
     @Override

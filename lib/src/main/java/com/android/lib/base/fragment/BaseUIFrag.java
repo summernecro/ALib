@@ -87,14 +87,12 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
         super.onCreate(savedInstanceState);
         synchronized (BaseUIActivity.class){
             uniqueid = System.currentTimeMillis();
-            LogUtil.E("uniqueid:"+uniqueid);
         }
         frag = this;
         if(is注册事件总线()){
             EventBus.getDefault().register(this);
         }
         fragIs.onCreate(savedInstanceState);
-        LogUtil.E(this.getClass());
     }
 
     @Override
