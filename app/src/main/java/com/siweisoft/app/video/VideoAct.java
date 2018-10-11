@@ -11,6 +11,8 @@ import com.android.lib.base.ope.BaseValue;
 import com.android.lib.util.LoadUtil;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.dialog.DialogUtil;
+import com.android.lib.util.fragment.two.FragManager2;
+import com.android.lib.util.fragment.two.FragUtil;
 import com.android.lib.util.system.HandleUtil;
 import com.android.lib.view.bottommenu.Msg;
 import com.jzxiang.pickerview.TimePickerDialog;
@@ -45,8 +47,9 @@ public class VideoAct extends BaseUIFrag<VideoUIOpe,VideoValue> {
                     @Override
                     public void run() {
                         getPV().getLoadUtil().onStopLoading("1");
+                        FragUtil.getInstance().start(getBaseUIAct(),"1",R.id.rootr,new TextAct());
                     }
-                }, 5000);
+                }, 2000);
                 break;
         }
     }

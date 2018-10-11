@@ -9,7 +9,6 @@
     </data>
 
     <RelativeLayout
-        android:id="@+id/rootr"
         android:background="@color/red"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

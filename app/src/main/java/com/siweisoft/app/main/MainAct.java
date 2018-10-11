@@ -21,6 +21,7 @@ import com.android.lib.util.LogUtil;
 import com.android.lib.util.ToastUtil;
 import com.android.lib.util.fragment.two.FragManager2;
 //import com.raizlabs.android.dbflow.sql.language.Select;
+import com.android.lib.util.fragment.two.FragUtil;
 import com.android.lib.view.loading.BallTrianglePathIndicator;
 import com.siweisoft.app.R;
 import com.siweisoft.app.sett.SettAct;
@@ -77,5 +78,10 @@ public class MainAct extends BaseUIActivity<MainUIOpe,MainValue> implements View
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragUtil.getInstance().activityFinish(this,getMoudle(),true);
     }
 }

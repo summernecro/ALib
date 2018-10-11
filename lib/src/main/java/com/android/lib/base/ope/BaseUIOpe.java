@@ -16,6 +16,8 @@ import java.lang.reflect.ParameterizedType;
 
 import com.android.lib.databinding.ActBaseuiBinding;
 import com.android.lib.util.LogUtil;
+import com.github.florent37.viewanimator.AnimationListener;
+import com.github.florent37.viewanimator.ViewAnimator;
 
 /**
  * ui处理操作者 处理对象 uibean fragment view
@@ -36,6 +38,10 @@ public class BaseUIOpe<A extends ViewDataBinding> implements View.OnClickListene
         this.context = context;
         bind = initViewDataBinding();
         bind.executePendingBindings();
+        initclick();
+    }
+
+    private void initclick(){
         View[] clickviews = initOnClick();
         View[] longclickviews = initOnLongClick();
         for(int i=0;i<clickviews.length;i++){
@@ -51,6 +57,7 @@ public class BaseUIOpe<A extends ViewDataBinding> implements View.OnClickListene
         this.context = frag.getBaseUIAct();
         bind = initViewDataBinding();
         bind.executePendingBindings();
+        initclick();
     }
 
 
@@ -149,7 +156,20 @@ public class BaseUIOpe<A extends ViewDataBinding> implements View.OnClickListene
         }
     }
 
-    public void animRoot(){
-        //ViewAnimator.animate(root).duration(300).fadeIn().start();
+    public void onStart(){
+        ViewAnimator.animate(getBind().getRoot()).translationX(getView().getWidth(),0).alpha(1,1).decelerate().duration(500).start();
     }
+
+    public void onBackOut(){
+        //ViewAnimator.animate(getBind().getRoot()).translationX(0,-getView().getWidth()).alpha(1,1).decelerate().duration(500).start();
+    }
+
+    public void onRemove(AnimationListener.Stop stopListener){
+        ViewAnimator.animate(getBind().getRoot()).translationX(0,getView().getWidth()).alpha(1,1).decelerate().duration(500).start().onStop(stopListener);
+    }
+
+    public void onBackIn(){
+        ViewAnimator.animate(getBind().getRoot()).translationX(-getView().getWidth(),0).alpha(1,1).decelerate().duration(500).start();
+    }
+
 }

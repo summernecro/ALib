@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.android.lib.R;
 import com.android.lib.aplication.LibAplication;
-import com.android.lib.base.ope.BaseDAOpe;
 import com.android.lib.base.ope.BaseOpes;
 import com.android.lib.base.ope.BaseUIOpe;
 import com.android.lib.base.ope.BaseValue;
@@ -57,7 +56,8 @@ public abstract class BaseUIActivity<A extends BaseUIOpe,C extends BaseValue> ex
         setContentView(getBaseUILayout());
         baseUIRoot = findViewById(R.id.act_base_root);
         getPU().added(baseUIRoot);
-        getPU().animRoot();
+        getPU().setView(getBaseUIRoot());
+        getPU().onStart();
         getP().getV().initValue();
         getP().getU().initUI();
         initNow();

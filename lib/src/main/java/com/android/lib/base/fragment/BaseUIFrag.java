@@ -10,10 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.lib.R;
-import com.android.lib.base.activity.BaseActivity;
 import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.base.interf.FragI;
-import com.android.lib.base.ope.BaseDAOpe;
 import com.android.lib.base.ope.BaseOpes;
 import com.android.lib.base.ope.BaseUIOpe;
 import com.android.lib.base.ope.BaseValue;
@@ -21,11 +19,9 @@ import com.android.lib.constant.ValueConstant;
 import com.android.lib.databinding.LayoutBaseuiBinding;
 import com.android.lib.util.LoadUtil;
 import com.android.lib.util.LogUtil;
-import com.android.lib.util.fragment.two.FragManager2;
 import com.android.lib.util.system.HandleUtil;
 import com.android.lib.util.video.TipUtil;
 import com.android.lib.view.bottommenu.Msg;
-import com.github.florent37.viewanimator.ViewAnimator;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -58,7 +54,6 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
 
     private TipUtil tipUtil = new TipUtil();
 
-    private FragManager2 fragM;
 
     private BaseUIFrag baseUIFrag;
 
@@ -113,8 +108,8 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
             public void run() {
                 initaa(baseUIFrag.getClass());
                 getPU().added(baseUIRoot);
-                getPU().animRoot();
                 getP().getU().setView(getView());
+                getPU().onStart();
                 getP().getU().initUI();
                 unbinder = ButterKnife.bind(baseUIFrag, baseUIRoot);
                 initNow();
@@ -335,13 +330,6 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
         return activity;
     }
 
-    public FragManager2 getFragM() {
-        return fragM;
-    }
-
-    public void setFragM(FragManager2 fragM) {
-        this.fragM = fragM;
-    }
 
     public BaseUIFrag getBaseUIFrag() {
         return baseUIFrag;
