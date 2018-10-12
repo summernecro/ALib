@@ -6,7 +6,7 @@
             name="act_main"
             type="String" />
     </data>
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:orientation="vertical"
         android:id="@+id/rootr"
         android:background="@color/white"
@@ -14,14 +14,40 @@
         android:layout_height="match_parent">
 
 
-<android.support.v4.view.ViewPager
-    android:id="@+id/viewpager"
-    android:text="1234"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
-
         <com.android.lib.view.bottommenu.BottomMenuView
+            android:background="@color/white"
+            android:id="@+id/bottommenu"
+            android:elevation="4dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="60dp"/>
-    </RelativeLayout>
+            android:layout_height="48dp"/>
+
+        <RelativeLayout
+            android:id="@+id/contain_a"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottommenu"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <RelativeLayout
+            android:id="@+id/contain_b"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottommenu"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <RelativeLayout
+            android:id="@+id/contain_c"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottommenu"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+    </android.support.constraint.ConstraintLayout>
 </layout>

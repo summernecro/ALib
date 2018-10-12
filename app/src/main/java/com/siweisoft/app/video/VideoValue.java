@@ -18,6 +18,8 @@ public class VideoValue extends BaseValue {
 
     private LoadUtil loadUtil = new LoadUtil();
 
+    private String url = "";
+
     @Override
     public void initValue() {
         super.initValue();

@@ -22,9 +22,10 @@ public class AppsDataBindingAdapter extends RecyclerView.Adapter<AppViewHolder> 
     protected List list;
     protected int vari;
     protected int layout;
-    protected ViewListener viewListener;
     protected Context context;
+    protected View.OnClickListener listener;
     protected int selecPos = -1;
+    protected  boolean load = false;
 
 
     public AppsDataBindingAdapter(Context context, int layout, int vari, List list) {
@@ -34,12 +35,21 @@ public class AppsDataBindingAdapter extends RecyclerView.Adapter<AppViewHolder> 
         this.list = list;
     }
 
-    public AppsDataBindingAdapter(Context context, int layout, int vari, List list, ViewListener viewListener) {
+    public AppsDataBindingAdapter(Context context, int layout, int vari, List list, View.OnClickListener listener) {
         this.context = context;
         this.layout = layout;
         this.vari = vari;
         this.list = list;
-        this.viewListener = viewListener;
+        this.listener = listener;
+    }
+
+    public AppsDataBindingAdapter(Context context, int layout, int vari, List list,boolean load, View.OnClickListener listener) {
+        this.context = context;
+        this.layout = layout;
+        this.vari = vari;
+        this.list = list;
+        this.listener = listener;
+        this.load = load;
     }
 
     @Override
@@ -53,9 +63,11 @@ public class AppsDataBindingAdapter extends RecyclerView.Adapter<AppViewHolder> 
         viewDataBinding.getRoot().setTag(R.id.data, list.get(position));
         viewDataBinding.getRoot().setTag(R.id.position, position);
         viewDataBinding.getRoot().setOnClickListener(this);
-//        viewDataBinding.getRoot().setOnLongClickListener(this);
-//        viewDataBinding.setVariable(vari, list.get(position));
-//        viewDataBinding.executePendingBindings();//加一行，问题解决
+        viewDataBinding.getRoot().setOnLongClickListener(this);
+        if(load){
+            viewDataBinding.setVariable(vari, list.get(position));
+            viewDataBinding.executePendingBindings();//加一行，问题解决
+        }
     }
 
     @Override
@@ -65,15 +77,15 @@ public class AppsDataBindingAdapter extends RecyclerView.Adapter<AppViewHolder> 
 
     @Override
     public void onClick(View v) {
-        if (viewListener != null) {
-            viewListener.onInterupt(ViewListener.TYPE_ONCLICK, v);
+        if (listener != null) {
+            listener.onClick(v);
         }
     }
 
     @Override
     public boolean onLongClick(View v) {
-        if (viewListener != null) {
-            viewListener.onInterupt(ViewListener.TYPE_ONLONGCLICK, v);
+        if (listener != null) {
+            listener.onClick(v);
         }
         return true;
     }
@@ -85,8 +97,8 @@ public class AppsDataBindingAdapter extends RecyclerView.Adapter<AppViewHolder> 
 
     }
 
-    public void setViewListener(ViewListener viewListener) {
-        this.viewListener = viewListener;
+    public void setListener(View.OnClickListener listener) {
+        this.listener = listener;
     }
 
     public List getList() {

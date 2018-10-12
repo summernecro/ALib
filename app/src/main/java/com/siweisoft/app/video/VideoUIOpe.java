@@ -25,16 +25,10 @@ import java.util.ArrayList;
 
 public class VideoUIOpe extends BaseUIOpe<ActVideoBinding>{
 
-    public void initList(ArrayList<Integer> list){
+    public void initList(ArrayList<Integer> list, View.OnClickListener listener){
         getBind().actVideo.setLayoutManager(new LinearLayoutManager(getActivity()));
         getBind().actVideo.addItemDecoration(new MyItemDecoration2(getActivity(),5));
-        getBind().actVideo.setAdapter(new AppsDataBindingAdapter(getActivity(), R.layout.item_video, BR.item_video, list, new ViewListener() {
-            @Override
-            public void onInterupt(int type, View v) {
-                LogUtil.E("22222222");
-                EventBus.getDefault().post(new Msg("ItemVideoBinding",getFrag().getUniqueid()+"",v.getTag(R.id.data)));
-            }
-        }){
+        getBind().actVideo.setAdapter(new AppsDataBindingAdapter(getActivity(), R.layout.item_video, BR.item_video, list, listener){
             @Override
             public void onBindViewHolder(AppViewHolder holder, int position) {
                 super.onBindViewHolder(holder, position);

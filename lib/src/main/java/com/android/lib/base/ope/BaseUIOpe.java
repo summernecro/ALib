@@ -15,6 +15,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 
 import com.android.lib.databinding.ActBaseuiBinding;
+import com.android.lib.util.ClickUtil;
 import com.android.lib.util.LogUtil;
 import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
@@ -131,9 +132,13 @@ public class BaseUIOpe<A extends ViewDataBinding> implements View.OnClickListene
     @Override
     public void onClick(View v) {
       if(getFrag()==null){
-          getActivity().onClick(v);
+          if(ClickUtil.getInstance().init(v)){
+              getActivity().onClick(v);
+          }
       }else{
-          getFrag().onClick(v);
+         if(ClickUtil.getInstance().init(v)){
+             getFrag().onClick(v);
+         }
       }
     }
 
@@ -153,23 +158,24 @@ public class BaseUIOpe<A extends ViewDataBinding> implements View.OnClickListene
     public void added(ViewGroup viewGroup){
         if(getBind()!=null){
             viewGroup.addView(getBind().getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            setView(viewGroup);
         }
     }
 
     public void onStart(){
-        ViewAnimator.animate(getBind().getRoot()).translationX(getView().getWidth(),0).alpha(1,1).decelerate().duration(500).start();
+        ViewAnimator.animate(getView()).translationX(getView().getWidth(),0).alpha(1,1).duration(300).start();
     }
 
     public void onBackOut(){
-        //ViewAnimator.animate(getBind().getRoot()).translationX(0,-getView().getWidth()).alpha(1,1).decelerate().duration(500).start();
+        ViewAnimator.animate(getView()).translationX(0,-getView().getWidth()).alpha(1,1).duration(300).start();
     }
 
     public void onRemove(AnimationListener.Stop stopListener){
-        ViewAnimator.animate(getBind().getRoot()).translationX(0,getView().getWidth()).alpha(1,1).decelerate().duration(500).start().onStop(stopListener);
+        ViewAnimator.animate(getView()).translationX(0,getView().getWidth()).alpha(1,1).duration(300).start().onStop(stopListener);
     }
 
     public void onBackIn(){
-        ViewAnimator.animate(getBind().getRoot()).translationX(-getView().getWidth(),0).alpha(1,1).decelerate().duration(500).start();
+        ViewAnimator.animate(getView()).translationX(-getView().getWidth()/2,0).alpha(1,1).duration(300).start();
     }
 
 }

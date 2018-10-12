@@ -1,9 +1,8 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'kotlin-kapt'
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
     useLibrary 'org.apache.http.legacy'
-    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.siweisoft.app"
         minSdkVersion 19

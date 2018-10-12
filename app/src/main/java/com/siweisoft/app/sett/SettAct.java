@@ -4,14 +4,12 @@ package com.siweisoft.app.sett;
 
 import android.view.View;
 
-import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.base.fragment.BaseUIFrag;
-import com.android.lib.base.ope.BaseDAOpe;
 import com.android.lib.base.ope.BaseValue;
 import com.android.lib.util.LogUtil;
 import com.android.lib.view.bottommenu.Msg;
 import com.siweisoft.app.R;
-import com.siweisoft.app.text.TextAct;
+import com.siweisoft.app.text.TextFrag;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -30,7 +28,7 @@ public class SettAct extends BaseUIFrag<SettUIOpe,BaseValue> {
     @OnClick({R.id.act_sett})
     public void onClick(View v) {
         super.onClick(v);
-        Msg msg = new Msg(SettAct.class.getName(), TextAct.class.getName(),"ssssssssssssssdddddddddddd");
+        Msg msg = new Msg(SettAct.class.getName(), TextFrag.class.getName(),"ssssssssssssssdddddddddddd");
         EventBus.getDefault().post(msg);
     }
 

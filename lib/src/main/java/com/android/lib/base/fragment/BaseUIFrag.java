@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import com.android.lib.R;
 import com.android.lib.base.activity.BaseUIActivity;
@@ -22,6 +23,8 @@ import com.android.lib.util.LogUtil;
 import com.android.lib.util.system.HandleUtil;
 import com.android.lib.util.video.TipUtil;
 import com.android.lib.view.bottommenu.Msg;
+import com.github.florent37.viewanimator.AnimationListener;
+import com.github.florent37.viewanimator.ViewAnimator;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -65,14 +68,19 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
 
     private long uniqueid;
 
+    private BaseUIFrag lastFrag;
+
 
     public BaseUIFrag() {
         baseUIFrag = this;
-        LogUtil.E(this.getClass());
         setArguments(new Bundle());
         opes = new BaseOpes<>(null,null);
         initcc(getClass());
         getP().getV().initValue();
+    }
+
+    public void initUI(){
+        initaa(baseUIFrag.getClass());
     }
 
 
@@ -95,28 +103,36 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
         View group = inflater.inflate(getBaseUILayout(),container,false);
         fragIs.onCreateView(inflater,container,savedInstanceState);
         baseUIRoot = group.findViewById(R.id.container);
+        if(getPU()==null){
+            initUI();
+        }
+        getPU().added(baseUIRoot);
+        //group.setVisibility(View.INVISIBLE);
         return group;
     }
 
     @Override
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        unbinder = ButterKnife.bind(this, view);
-
-        HandleUtil.getInstance().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                initaa(baseUIFrag.getClass());
-                getPU().added(baseUIRoot);
-                getP().getU().setView(getView());
-                getPU().onStart();
-                getP().getU().initUI();
-                unbinder = ButterKnife.bind(baseUIFrag, baseUIRoot);
-                initNow();
-            }
-        }, delayTime());
+        getP().getU().initUI();
+        unbinder = ButterKnife.bind(baseUIFrag, baseUIRoot);
+        initNow();
         fragIs.onViewCreated(view,savedInstanceState);
+
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                //getView().setVisibility(View.VISIBLE);
+                getPU().onStart();
+                if(getLastFrag()!=null){
+                    getLastFrag().getPU().onBackOut();
+                }
+                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
     }
+
+
 
     @Override
     public void onAttach(Context context) {
@@ -134,37 +150,11 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
         //ViewAnimator.animate(root).duration(300).fadeIn().start();
     }
 
-    public void initdelay() {
-        if(getView()==null){
-            return;
-        }
-    }
 
     public void initNow() {
         if(getView()==null){
             return;
         }
-    }
-
-    public void onFristVisible(){
-        if(!isFiistVisibleinit){
-            onFristVisibleInit();
-            HandleUtil.getInstance().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    on第一次显示延迟加载();
-                }
-            }, delayTime());
-            isFiistVisibleinit = true;
-        }
-    }
-
-    protected void on第一次显示延迟加载(){
-
-    }
-
-    protected void onFristVisibleInit(){
-
     }
 
     @Override
@@ -330,6 +320,9 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
         return activity;
     }
 
+    public void setActivity(BaseUIActivity activity) {
+        this.activity = activity;
+    }
 
     public BaseUIFrag getBaseUIFrag() {
         return baseUIFrag;
@@ -339,5 +332,11 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
         return uniqueid;
     }
 
+    public BaseUIFrag getLastFrag() {
+        return lastFrag;
+    }
 
+    public void setLastFrag(BaseUIFrag lastFrag) {
+        this.lastFrag = lastFrag;
+    }
 }

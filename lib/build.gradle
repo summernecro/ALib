@@ -6,7 +6,7 @@ apply plugin: 'com.jakewharton.butterknife'
 def dbflow_version = "4.2.4"
 def kotlin_version = '1.1.51'
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 //    buildToolsVersion '27.0.2'
     useLibrary 'org.apache.http.legacy'
     //android 6.0 之后 取消支持 Apache HTTP 客户端，要继续使用 Apache HTTP API，您必须先在 build.gradle 文件中声明以下编译时依赖项：
@@ -74,12 +74,12 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libDir')
 
     //android 基本支持库
-    api 'com.android.support:support-v4:27+'
-    api 'com.android.support:appcompat-v7:27+'
-    api 'com.android.support:cardview-v7:27+'
+    api 'com.android.support:support-v4:28+'
+    api 'com.android.support:appcompat-v7:28+'
+    api 'com.android.support:cardview-v7:28+'
+    api 'com.android.support:design:28+'
+    api 'com.android.support:recyclerview-v7:28+'
     api 'com.android.support.constraint:constraint-layout:1.0.2'
-    api 'com.android.support:design:27+'
-    api 'com.android.support:recyclerview-v7:27+'
 
     api 'com.jakewharton:butterknife:8.4.0'//注解
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'

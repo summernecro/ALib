@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import com.android.lib.R;
 import com.android.lib.aplication.LibAplication;
@@ -14,6 +15,7 @@ import com.android.lib.base.ope.BaseValue;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.activity.ActivityUtil;
 import com.android.lib.view.bottommenu.Msg;
+import com.github.florent37.viewanimator.AnimationListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -55,9 +57,9 @@ public abstract class BaseUIActivity<A extends BaseUIOpe,C extends BaseValue> ex
         }
         setContentView(getBaseUILayout());
         baseUIRoot = findViewById(R.id.act_base_root);
-        getPU().added(baseUIRoot);
         getPU().setView(getBaseUIRoot());
-        getPU().onStart();
+        //getPU().getView().setVisibility(View.INVISIBLE);
+        getPU().added(baseUIRoot);
         getP().getV().initValue();
         getP().getU().initUI();
         initNow();
@@ -65,6 +67,15 @@ public abstract class BaseUIActivity<A extends BaseUIOpe,C extends BaseValue> ex
         if(registerEventBus()){
             EventBus.getDefault().register(this);
         }
+
+        getPU().getView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                //getPU().getView().setVisibility(View.VISIBLE);
+                getPU().onStart();
+                getBaseUIRoot().getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
     }
 
     protected void initNow(){
