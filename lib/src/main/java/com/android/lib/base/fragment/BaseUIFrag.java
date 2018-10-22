@@ -3,6 +3,7 @@ package com.android.lib.base.fragment;
 import android.content.Context;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -91,12 +92,22 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
         synchronized (BaseUIActivity.class){
             uniqueid = System.currentTimeMillis();
         }
+        if(savedInstanceState!=null){
+            getP().setVa((C) savedInstanceState.getSerializable(ValueConstant.DATA_VALUE));
+        }
         frag = this;
         if(is注册事件总线()){
             EventBus.getDefault().register(this);
         }
         fragIs.onCreate(savedInstanceState);
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        getArguments().putSerializable(ValueConstant.DATA_VALUE,getPV());
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

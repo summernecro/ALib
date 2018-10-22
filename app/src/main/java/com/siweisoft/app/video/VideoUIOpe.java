@@ -28,7 +28,7 @@ public class VideoUIOpe extends BaseUIOpe<ActVideoBinding>{
     public void initList(ArrayList<Integer> list, View.OnClickListener listener){
         getBind().actVideo.setLayoutManager(new LinearLayoutManager(getActivity()));
         getBind().actVideo.addItemDecoration(new MyItemDecoration2(getActivity(),5));
-        getBind().actVideo.setAdapter(new AppsDataBindingAdapter(getActivity(), R.layout.item_video, BR.item_video, list, listener){
+        getBind().actVideo.setAdapter(new AppsDataBindingAdapter(getActivity(), R.layout.item_video, BR.itemVideo, list, listener){
             @Override
             public void onBindViewHolder(AppViewHolder holder, int position) {
                 super.onBindViewHolder(holder, position);

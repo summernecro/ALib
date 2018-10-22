@@ -9,6 +9,7 @@ import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.module.AppGlideModule;
 
+//图片加载
 @GlideModule
 public class LibGlidModule extends AppGlideModule {
 

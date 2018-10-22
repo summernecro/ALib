@@ -11,6 +11,7 @@ import com.android.lib.base.adapter.AppsDataBindingAdapter;
 import com.android.lib.base.fragment.FragUtil;
 import com.android.lib.base.ope.BaseUIOpe;
 import com.android.lib.bean.AppViewHolder;
+import com.android.lib.util.ColorUtil;
 import com.android.lib.util.RandomUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.siweisoft.app.BR;
@@ -25,7 +26,8 @@ public class TextUIOpe extends BaseUIOpe<ActTextBinding>{
     @Override
     public void initUI() {
         super.initUI();
-        getBind().getRoot().setBackgroundColor(Color.rgb(255*RandomUtil.getInstance().nextFloat(),255*RandomUtil.getInstance().nextFloat(),255*RandomUtil.getInstance().nextFloat()));
+
+        getBind().getRoot().setBackgroundColor(ColorUtil.getInstance().getIntFromColor(255*RandomUtil.getInstance().nextFloat(),255*RandomUtil.getInstance().nextFloat(),255*RandomUtil.getInstance().nextFloat()));
     }
 
     public void initimage(String url){
@@ -35,7 +37,7 @@ public class TextUIOpe extends BaseUIOpe<ActTextBinding>{
 
     public void initList(ArrayList<Integer> list, View.OnClickListener listener){
         getBind().recycle.setLayoutManager(new LinearLayoutManager(getActivity()));
-        getBind().recycle.setAdapter(new AppsDataBindingAdapter(getActivity(), R.layout.item_test, BR.item_test,list,listener){
+        getBind().recycle.setAdapter(new AppsDataBindingAdapter(getActivity(), R.layout.item_test, BR.itemTest,list,listener){
             @Override
             public void onBindViewHolder(AppViewHolder holder, int position) {
                 super.onBindViewHolder(holder, position);

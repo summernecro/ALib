@@ -13,7 +13,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class VideoValue extends BaseValue {
-
+    @Getter
+    @Setter
     private ArrayList<Integer> list = new ArrayList<>();
 
     private LoadUtil loadUtil = new LoadUtil();

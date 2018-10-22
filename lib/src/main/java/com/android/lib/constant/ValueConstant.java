@@ -26,6 +26,7 @@ public class ValueConstant {
     /**
      * 数据key
      */
+    public static final String DATA_VALUE = "DATA_VALUE";
     public static final String DATA_INTENT = "DATA_INTENT";
     public static final String DATA_RES = "DATA_RES";
     public static final String DATA_RES2 = "DATA_RES2";
