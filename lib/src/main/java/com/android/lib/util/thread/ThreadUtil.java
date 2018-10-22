@@ -1,11 +1,9 @@
 package com.android.lib.util.thread;
 
-import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.view.View;
 
-import com.android.lib.base.fragment.BaseFrg;
 import com.android.lib.base.fragment.BaseUIFrag;
 import com.android.lib.base.interf.FragAdapter;
 import com.android.lib.base.interf.OnLoadingInterf;

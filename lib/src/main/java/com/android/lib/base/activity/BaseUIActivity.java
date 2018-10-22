@@ -2,16 +2,20 @@ package com.android.lib.base.activity;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import com.android.lib.R;
-import com.android.lib.base.ope.BaseDAOpe;
+import com.android.lib.aplication.LibAplication;
 import com.android.lib.base.ope.BaseOpes;
 import com.android.lib.base.ope.BaseUIOpe;
 import com.android.lib.base.ope.BaseValue;
 import com.android.lib.util.LogUtil;
+import com.android.lib.util.activity.ActivityUtil;
 import com.android.lib.view.bottommenu.Msg;
+import com.github.florent37.viewanimator.AnimationListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,35 +30,52 @@ import butterknife.ButterKnife;
 /**
  * Created by summer on 2016/4/16 0016 11:51.
  */
-public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C extends BaseValue> extends BaseActivity implements View.OnClickListener{
+public abstract class BaseUIActivity<A extends BaseUIOpe,C extends BaseValue> extends AppCompatActivity implements View.OnClickListener{
 
     protected ViewGroup baseUIRoot;
 
-    protected BaseOpes<A, B,C> opes;
+    protected BaseOpes<A,C> opes;
 
     private String moudle;
 
     private ArrayList<String> moudles = new ArrayList<>();
 
-
+    private long uniqueid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        synchronized (BaseUIActivity.class){
+            uniqueid= System.currentTimeMillis();
+            LogUtil.E("uniqueid:"+uniqueid);
+        }
+        if (getApplication() instanceof LibAplication) {
+            ActivityUtil.getInstance().getActMap().put(getClass().getSimpleName(), getActivity());
+            ActivityUtil.getInstance().getActList().add(getActivity());
+        } else {
+            LogUtil.E("你的application最好继承LibAplication以便享有方便的方法");
+        }
         setContentView(getBaseUILayout());
         baseUIRoot = findViewById(R.id.act_base_root);
-        if(getP().getU().getBind()!=null){
-            baseUIRoot.addView(getP().getU().getBind().getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            animRoot(getP().getU().getBind().getRoot());
-        }
+        getPU().setView(getBaseUIRoot());
+        //getPU().getView().setVisibility(View.INVISIBLE);
+        getPU().added(baseUIRoot);
         getP().getV().initValue();
-        getP().getD().initDA();
         getP().getU().initUI();
         initNow();
         ButterKnife.bind(getActivity());
         if(registerEventBus()){
             EventBus.getDefault().register(this);
         }
+
+        getPU().getView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                //getPU().getView().setVisibility(View.VISIBLE);
+                getPU().onStart();
+                getBaseUIRoot().getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
     }
 
     protected void initNow(){
@@ -70,12 +91,11 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
     }
 
 
-    public BaseOpes<A, B,C> getP() {
+    public BaseOpes<A,C> getP() {
         if (opes == null) {
-            opes= new BaseOpes<>(null,null,null);
+            opes= new BaseOpes<>(null,null);
             initcc(getClass());
             initaa(getClass());
-            initbb(getClass());
         }
         return opes;
     }
@@ -84,9 +104,6 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
         return getP().getU();
     }
 
-    public B getPD(){
-        return getP().getD();
-    }
 
     public C getPV(){
         return getP().getV();
@@ -99,7 +116,7 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
             return;
         }
         if (c.getGenericSuperclass() instanceof ParameterizedType) {
-            Class<C> b = (Class<C>) ((ParameterizedType) c.getGenericSuperclass()).getActualTypeArguments()[2];
+            Class<C> b = (Class<C>) ((ParameterizedType) c.getGenericSuperclass()).getActualTypeArguments()[1];
             try {
                 Constructor<C> bc = b.getConstructor();
                 C cc = bc.newInstance();
@@ -110,29 +127,6 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
             }
         } else {
             initcc(c.getSuperclass());
-        }
-    }
-
-
-
-
-    private void initbb(Class<?> c) {
-        if (c == null) {
-            opes.setDa((B)(new BaseDAOpe()));
-            return;
-        }
-        if (c.getGenericSuperclass() instanceof ParameterizedType) {
-            Class<B> b = (Class<B>) ((ParameterizedType) c.getGenericSuperclass()).getActualTypeArguments()[1];
-            try {
-                Constructor<B> bc = b.getConstructor();
-                B bb = bc.newInstance();
-                opes.setDa(bb);
-            } catch (Exception e) {
-                e.printStackTrace();
-                LogUtil.E(e.getMessage());
-            }
-        } else {
-            initbb(c.getSuperclass());
         }
     }
 
@@ -151,8 +145,8 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
                 aa.init(getActivity());
                 opes.setUi(aa);
             } catch (Exception e) {
-                e.printStackTrace();
                 LogUtil.E(e.getMessage());
+                e.printStackTrace();
             }
         } else {
             initaa(c.getSuperclass());
@@ -170,7 +164,7 @@ public abstract class BaseUIActivity<A extends BaseUIOpe, B extends BaseDAOpe,C 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void dealMesage(Msg event) {
         LogUtil.E(event.dealer + ":" + getClass().getName());
-        if (!event.dealer.equals(getClass().getName())) {
+        if (!event.dealer.equals(uniqueid+"")) {
             event.isme = false;
             return;
         }

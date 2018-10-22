@@ -4,6 +4,7 @@ package com.android.lib.view.dialog.list;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 
 import com.android.lib.BR;
 import com.android.lib.R;
@@ -17,7 +18,7 @@ import java.util.List;
 public class DialogListUIOpe extends BaseUIOpe<FragDialogListBinding> {
 
 
-    public void init(List<String> strs, ViewListener listener){
+    public void init(List<String> strs, View.OnClickListener listener){
         getBind().recycle.setLayoutManager(new LinearLayoutManager(getActivity()));
         getBind().recycle.setAdapter(new AppsDataBindingAdapter(getActivity(), R.layout.item_txt, BR.item_txt,strs,listener));
     }

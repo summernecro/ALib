@@ -66,4 +66,12 @@ public class Container extends BaseBean{
             getUiUnit().remove(getUiUnit().size()-1);
         }
     }
+
+    public void removeLasUIUnit(BaseUIFrag baseUIFrag){
+        for(int i=0;i<getUiUnit().size();i++){
+           if(getUiUnit().get(i)==baseUIFrag){
+               getUiUnit().remove(baseUIFrag);
+           }
+        }
+    }
 }

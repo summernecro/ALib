@@ -4,19 +4,19 @@ package com.android.lib.view.image;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.lib.GlideApp;
 import com.android.lib.R;
-import com.android.lib.base.fragment.BaseFrg;
 import com.android.lib.constant.ValueConstant;
 import com.android.lib.util.NullUtil;
 import com.luck.picture.lib.photoview.PhotoView;
 
 
-public class ImageFrag extends BaseFrg implements View.OnLongClickListener, View.OnClickListener {
+public class ImageFrag extends Fragment implements View.OnLongClickListener, View.OnClickListener {
 
 
     PhotoView photoView;

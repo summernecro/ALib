@@ -10,12 +10,11 @@ import com.android.lib.R;
 import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.base.fragment.BaseUIFrag;
 import com.android.lib.base.interf.view.OnAppItemClickListener;
-import com.android.lib.base.listener.ViewListener;
 import com.android.lib.util.fragment.two.FragManager2;
 
 import java.util.List;
 
-public class DialogListFrag extends BaseUIFrag<DialogListUIOpe,DialogListDAOpe,DialogListValue> implements ViewListener{
+public class DialogListFrag extends BaseUIFrag<DialogListUIOpe,DialogListValue>  {
 
 
     private List<String> strs;
@@ -44,21 +43,6 @@ public class DialogListFrag extends BaseUIFrag<DialogListUIOpe,DialogListDAOpe,D
                 .finish((BaseUIActivity) getActivity(),get容器(),true);
     }
 
-    @Override
-    public void onInterupt(int type, View v) {
-        switch (type){
-            case ViewListener.TYPE_ONCLICK:
-                int pos = (int) v.getTag(R.id.position);
-                FragManager2.getInstance()
-                        .setFinishAnim(R.anim.top_in,R.anim.top_out)
-                        .setHideLast(false)
-                        .finish((BaseUIActivity) getActivity(),get容器(),true);
-                if(onAppItemsClickListener!=null){
-                    onAppItemsClickListener.onAppItemClick(v,pos);
-                }
-                break;
-        }
-    }
 
     public void setOnAppItemsClickListener(OnAppItemClickListener onAppItemsClickListener) {
         this.onAppItemsClickListener = onAppItemsClickListener;

@@ -46,7 +46,6 @@ public class FragManager2  {
     }
 
     public void start(BaseUIActivity activity, String moudle, int viewid,BaseUIFrag fragment){
-        fragment.setFragM(this);
         checkMap(moudle,viewid);
         checkArguments(fragment);
         activity.setMoudle(moudle);
@@ -126,6 +125,12 @@ public class FragManager2  {
             map.get(moudle).getLast().onResult(res,bundle);
         }
         return true;
+    }
+
+    public void activityFinish(BaseUIActivity activity, String moudle,boolean keepone){
+        if(!finish(activity,moudle,keepone)){
+            activity.finish();
+        }
     }
 
 

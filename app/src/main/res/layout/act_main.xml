@@ -1,43 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="act_main"
             type="String" />
     </data>
-
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:orientation="vertical"
         android:id="@+id/rootr"
         android:background="@color/white"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/dddd"
-            android:gravity="center"
-            android:text="123444"
+
+        <com.android.lib.view.bottommenu.BottomMenuView
+            android:background="@color/white"
+            android:id="@+id/bottommenu"
+            android:elevation="4dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="48dp"/>
 
-<android.support.v4.view.ViewPager
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/dddd"
-    app:layout_constraintBottom_toTopOf="@+id/bottommenu"
-    android:id="@+id/viewpager"
-    android:text="1234"
-    android:layout_width="match_parent"
-    android:layout_height="100dp" />
-<com.android.lib.view.bottommenu.BottomMenuView
+        <RelativeLayout
+            android:id="@+id/contain_a"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottommenu"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
 
-    android:background="@color/color_blue_300"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:id="@+id/bottommenu"
-    android:layout_width="match_parent"
-    android:layout_height="50dp" />
-    </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/contain_b"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottommenu"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <RelativeLayout
+            android:id="@+id/contain_c"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottommenu"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+    </android.support.constraint.ConstraintLayout>
 </layout>
