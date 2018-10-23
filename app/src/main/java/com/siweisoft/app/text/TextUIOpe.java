@@ -26,7 +26,6 @@ public class TextUIOpe extends BaseUIOpe<ActTextBinding>{
     @Override
     public void initUI() {
         super.initUI();
-
         getBind().getRoot().setBackgroundColor(ColorUtil.getInstance().getIntFromColor(255*RandomUtil.getInstance().nextFloat(),255*RandomUtil.getInstance().nextFloat(),255*RandomUtil.getInstance().nextFloat()));
     }
 

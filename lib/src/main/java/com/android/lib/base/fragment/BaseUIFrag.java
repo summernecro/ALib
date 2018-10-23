@@ -93,7 +93,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
             uniqueid = System.currentTimeMillis();
         }
         if(savedInstanceState!=null){
-            getP().setVa((C) savedInstanceState.getSerializable(ValueConstant.DATA_VALUE));
+            //getP().setVa((C) savedInstanceState.getSerializable(ValueConstant.DATA_VALUE));
         }
         frag = this;
         if(is注册事件总线()){
@@ -105,7 +105,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        getArguments().putSerializable(ValueConstant.DATA_VALUE,getPV());
+        //getArguments().putSerializable(ValueConstant.DATA_VALUE,getPV());
     }
 
 
