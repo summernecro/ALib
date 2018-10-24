@@ -71,7 +71,10 @@ public class AppService extends Service {
         this.onFinishListener = onFinishListener;
     }
 
-    public static void startReceive(Context context, BroadcastReceiver receiver){
+
+    public static void startBackGround(Context context, BroadcastReceiver receiver){
+        context.startService(new Intent(context,AppService.class));
+
         IntentFilter filter = new IntentFilter();
         filter.addAction(context.getPackageName() +"."+ ValueConstant.ACITON_GLOB_CAST);
         context.registerReceiver(receiver,filter);
