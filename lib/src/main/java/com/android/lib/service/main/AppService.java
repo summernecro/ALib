@@ -1,7 +1,10 @@
 package com.android.lib.service.main;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
@@ -35,14 +38,14 @@ public class AppService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        LogUtil.E(""+System.currentTimeMillis());
+        LogUtil.E("onStartCommand:"+System.currentTimeMillis());
         AppThread.getInstance(new OnFinishWithObjI() {
             @Override
             public void onNetFinish(Object o) {
                 int i = (int) o;
                 //isThisParentHaveChild(NoteBookID.BASE_PARENT_ID, name);
                 LogUtil.E(getPackageName());
-                Intent intent1 = new Intent(getPackageName() + ValueConstant.ACITON_GLOB_CAST);
+                Intent intent1 = new Intent(getPackageName() +"."+ ValueConstant.ACITON_GLOB_CAST);
                 intent1.putExtra(ValueConstant.DATA_DATA, i);
                 sendBroadcast(intent1);
             }
@@ -66,5 +69,11 @@ public class AppService extends Service {
 
     public void setOnFinishListener(OnFinishListener onFinishListener) {
         this.onFinishListener = onFinishListener;
+    }
+
+    public static void startReceive(Context context, BroadcastReceiver receiver){
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(context.getPackageName() +"."+ ValueConstant.ACITON_GLOB_CAST);
+        context.registerReceiver(receiver,filter);
     }
 }
