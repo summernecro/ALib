@@ -8,32 +8,17 @@ import com.android.lib.base.interf.OnFinishWithObjI;
  */
 public class AppThread extends Thread {
 
-    private static AppThread instance;
-    private static OnFinishWithObjI o;
+    public  OnFinishWithObjI o;
     public boolean stop = true;
     public boolean pause = true;
     //时间间隔
     public long sleepTime = 10000;
-    int count = 0;
+    private int count = 0;
 
     private AppThread() {
-
-    }
-
-    public static AppThread getInstance(OnFinishWithObjI o) {
-        AppThread.o = o;
-        if (instance == null) {
-            instance = new AppThread();
-        }
-        return instance;
-    }
-
-
-    public AppThread init() {
         stop = false;
         pause = false;
         count = 0;
-        return instance;
     }
 
     @Override
@@ -57,5 +42,9 @@ public class AppThread extends Thread {
         if (o != null) {
             o.onNetFinish(count);
         }
+    }
+
+    public int getCount() {
+        return count;
     }
 }
