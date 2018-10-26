@@ -39,7 +39,7 @@ public class AppService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         LogUtil.E("onStartCommand:"+System.currentTimeMillis());
-        AppThread.getInstance(new OnFinishWithObjI() {
+        AppThread appThread = new AppThread(new OnFinishWithObjI() {
             @Override
             public void onNetFinish(Object o) {
                 int i = (int) o;
@@ -49,7 +49,8 @@ public class AppService extends Service {
                 intent1.putExtra(ValueConstant.DATA_DATA, i);
                 sendBroadcast(intent1);
             }
-        }).init().start();
+        });
+        appThread.start();
         return super.onStartCommand(intent, flags, startId);
     }
 

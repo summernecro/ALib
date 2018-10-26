@@ -15,10 +15,11 @@ public class AppThread extends Thread {
     public long sleepTime = 10000;
     private int count = 0;
 
-    private AppThread() {
+    public AppThread(OnFinishWithObjI o) {
         stop = false;
         pause = false;
         count = 0;
+        this.o = o;
     }
 
     @Override

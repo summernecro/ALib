@@ -52,7 +52,7 @@ public class MainAct extends BaseUIActivity<MainUIOpe,MainValue> implements View
 
     public void onClick(View v) {
         ToastUtil.getInstance().showShort(getActivity(),"fdfdfdf");
-        NetGet.downLoadFile("http://www.summernecro.com:8888/record/20170629/20170626154234Wb7TFgsJ.jpg", Environment.getExternalStorageDirectory() + "/records/1.jpg", new NetAdapter(this) {
+        NetGet.downLoadFile("http://222.186.36.75:8888/record/20170629/20170626154234Wb7TFgsJ.jpg", Environment.getExternalStorageDirectory() + "/records/1.jpg", new NetAdapter(this) {
             @Override
             public void onNetFinish(boolean haveData, String url, BaseResBean baseResBean) {
                 super.onNetFinish(haveData, url, baseResBean);

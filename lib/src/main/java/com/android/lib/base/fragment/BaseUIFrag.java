@@ -134,7 +134,12 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
             @Override
             public void onGlobalLayout() {
                 //getView().setVisibility(View.VISIBLE);
-                onStart();
+                onStart(new AnimationListener.Stop() {
+                    @Override
+                    public void onStop() {
+
+                    }
+                });
                 if(getLastFrag()!=null){
                     getLastFrag().onBackOut();
                 }
@@ -310,8 +315,8 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
     }
 
 
-    public void onStart(){
-        ViewAnimator.animate(getView()).translationX(getView().getWidth(),0).alpha(1,1).duration(300).start();
+    public void onStart(AnimationListener.Stop stopListener){
+        ViewAnimator.animate(getView()).translationX(getView().getWidth(),0).alpha(1,1).duration(300).start().onStop(stopListener);
     }
 
     public void onBackOut(){

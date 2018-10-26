@@ -72,7 +72,7 @@ public abstract class BaseUIActivity<A extends BaseUIOpe,C extends BaseValue> ex
             @Override
             public void onGlobalLayout() {
                 //getPU().getView().setVisibility(View.VISIBLE);
-                getPU().onStart();
+                //getPU().onStart();
                 getBaseUIRoot().getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
