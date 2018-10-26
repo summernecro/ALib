@@ -134,9 +134,9 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
             @Override
             public void onGlobalLayout() {
                 //getView().setVisibility(View.VISIBLE);
-                getPU().onStart();
+                onStart();
                 if(getLastFrag()!=null){
-                    getLastFrag().getPU().onBackOut();
+                    getLastFrag().onBackOut();
                 }
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
@@ -308,6 +308,24 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
     public void removeTips(){
         tipUtil.removeTips( (ViewGroup) getView());
     }
+
+
+    public void onStart(){
+        ViewAnimator.animate(getView()).translationX(getView().getWidth(),0).alpha(1,1).duration(300).start();
+    }
+
+    public void onBackOut(){
+        ViewAnimator.animate(getView()).translationX(0,-getView().getWidth()).alpha(1,1).duration(300).start();
+    }
+
+    public void onRemove(AnimationListener.Stop stopListener){
+        ViewAnimator.animate(getView()).translationX(0,getView().getWidth()).alpha(1,1).duration(300).start().onStop(stopListener);
+    }
+
+    public void onBackIn(){
+        ViewAnimator.animate(getView()).translationX(-getView().getWidth()/2,0).alpha(1,1).duration(300).start();
+    }
+
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

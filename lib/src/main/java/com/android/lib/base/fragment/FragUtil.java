@@ -97,10 +97,10 @@ public class FragUtil {
         transaction.remove(last);
         if(havelastbefore){
             //transaction.show(map.get(moudle).getLastBefore());
-            lastbefore.getPU().onBackIn();
+            lastbefore.onBackIn();
         }
         final BaseUIFrag finalLast = last;
-        last.getPU().onRemove(new AnimationListener.Stop() {
+        last.onRemove(new AnimationListener.Stop() {
             @Override
             public void onStop() {
                 map.get(moudle).removeLasUIUnit(finalLast);
