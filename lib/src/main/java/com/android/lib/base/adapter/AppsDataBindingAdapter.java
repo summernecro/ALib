@@ -78,6 +78,7 @@ public class AppsDataBindingAdapter extends RecyclerView.Adapter<AppViewHolder> 
     @Override
     public void onClick(View v) {
         if (listener != null) {
+            v.setTag(R.id.data1,"onClick");
             listener.onClick(v);
         }
     }
@@ -85,6 +86,7 @@ public class AppsDataBindingAdapter extends RecyclerView.Adapter<AppViewHolder> 
     @Override
     public boolean onLongClick(View v) {
         if (listener != null) {
+            v.setTag(R.id.data1,"onLongClick");
             listener.onClick(v);
         }
         return true;

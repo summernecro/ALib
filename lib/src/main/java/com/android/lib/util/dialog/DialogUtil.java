@@ -43,6 +43,7 @@ public class DialogUtil {
         alertDialog.show();
         for (int i = 0; i < id.length; i++) {
             view.findViewById(id[i]).setOnClickListener(listener);
+            view.findViewById(id[i]).setTag(R.id.data1,view);
         }
         show = true;
         ViewAnimator.animate(alertDialog.getWindow().getDecorView()).scale(0.5f,1.1f,0.8f,1f).duration(1500).start();
@@ -64,6 +65,7 @@ public class DialogUtil {
         alertDialog.show();
         for (int i = 0; i < id.length; i++) {
             view.findViewById(id[i]).setOnClickListener(listener);
+            view.findViewById(id[i]).setTag(R.id.data1,view);
         }
         show = true;
         ViewAnimator.animate(alertDialog.getWindow().getDecorView()).scale(0.5f,1.1f,0.8f,1f).duration(1500).start();
