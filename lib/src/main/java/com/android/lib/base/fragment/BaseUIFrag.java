@@ -316,7 +316,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
 
 
     public void onStart(AnimationListener.Stop stopListener){
-        if(booleanAnim()[0]){
+        if(getBooleanAnim()[0]){
             ViewAnimator.animate(getView()).translationX(getView().getWidth(),0).alpha(1,1).duration(300).start().onStop(stopListener);
         }else{
             stopListener.onStop();
@@ -325,7 +325,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
     }
 
     public void onBackOut(){
-        if(booleanAnim()[1]){
+        if(getBooleanAnim()[1]){
             ViewAnimator.animate(getView()).translationX(0,-getView().getWidth()).alpha(1,1).duration(300).start();
         }else{
 
@@ -333,7 +333,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
     }
 
     public void onRemove(AnimationListener.Stop stopListener){
-        if(booleanAnim()[2]){
+        if(getBooleanAnim()[2]){
             ViewAnimator.animate(getView()).translationX(0,getView().getWidth()).alpha(1,1).duration(300).start().onStop(stopListener);
         }else{
             stopListener.onStop();
@@ -341,7 +341,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
     }
 
     public void onBackIn(){
-        if(booleanAnim()[3]){
+        if(getBooleanAnim()[3]){
             ViewAnimator.animate(getView()).translationX(-getView().getWidth()/2,0).alpha(1,1).duration(300).start();
         }else{
 
@@ -391,11 +391,22 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
         this.lastFrag = lastFrag;
     }
 
+
+    private Boolean[] booleanAnim = new Boolean[]{true,true,true,true};
+
     /**
      * onStart  onBackOut  onRemove onBackIn
      * @return
      */
-    public Boolean[] booleanAnim(){
-        return new Boolean[]{true,true,true,true};
+    public Boolean[] getBooleanAnim() {
+        return booleanAnim;
+    }
+
+    /**
+     * onStart  onBackOut  onRemove onBackIn
+     * @param booleanAnim
+     */
+    public void setBooleanAnim(Boolean[] booleanAnim) {
+        this.booleanAnim = booleanAnim;
     }
 }
