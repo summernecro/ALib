@@ -82,35 +82,63 @@ public class FragUtil {
         if(havelastbefore){
             lastbefore = map.get(moudle).getLastBefore();
         }
-        if(keepone){
+        //一个都没有没有
+        if(!havelast){
+            return false;
+        }else {
+            //只有一个
             if(!havelastbefore){
+                //保留一个
+                if(keepone){
+                    return false;
+                }else{
+                    //不保留
+                    final FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                    final Bundle bundle = last.getArguments();
+                    final int res = last.getArguments().getInt(ValueConstant.FARG_REQ);
+                    transaction.remove(last);
+                    if(havelastbefore){
+                        //transaction.show(map.get(moudle).getLastBefore());
+                        lastbefore.onBackIn();
+                    }
+                    final BaseUIFrag finalLast = last;
+                    last.onRemove(new AnimationListener.Stop() {
+                        @Override
+                        public void onStop() {
+                            map.get(moudle).removeLasUIUnit(finalLast);
+                            transaction.commitNowAllowingStateLoss();
+                            if(havelast){
+                                finalLast.onResult(res,bundle);
+                            }
+                        }
+                    });
+                    return true;
+                }
+            }else{
+                //有多个
+                final FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                final Bundle bundle = last.getArguments();
+                final int res = last.getArguments().getInt(ValueConstant.FARG_REQ);
+                transaction.remove(last);
+                if(havelastbefore){
+                    //transaction.show(map.get(moudle).getLastBefore());
+                    lastbefore.onBackIn();
+                }
+                final BaseUIFrag finalLast = last;
+                last.onRemove(new AnimationListener.Stop() {
+                    @Override
+                    public void onStop() {
+                        map.get(moudle).removeLasUIUnit(finalLast);
+                        transaction.commitNowAllowingStateLoss();
+                        if(havelast){
+                            finalLast.onResult(res,bundle);
+                        }
+                    }
+                });
                 return true;
             }
-        }else{
-            if(!havelast){
-                return false;
-            }
+
         }
-        final FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-        final Bundle bundle = last.getArguments();
-        final int res = last.getArguments().getInt(ValueConstant.FARG_REQ);
-        transaction.remove(last);
-        if(havelastbefore){
-            //transaction.show(map.get(moudle).getLastBefore());
-            lastbefore.onBackIn();
-        }
-        final BaseUIFrag finalLast = last;
-        last.onRemove(new AnimationListener.Stop() {
-            @Override
-            public void onStop() {
-                map.get(moudle).removeLasUIUnit(finalLast);
-                transaction.commitNowAllowingStateLoss();
-                if(havelast){
-                    finalLast.onResult(res,bundle);
-                }
-            }
-        });
-        return true;
     }
 
     public void activityFinish(BaseUIActivity activity, String moudle,boolean keepone){
