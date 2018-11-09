@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.android.lib.R;
 import com.android.lib.base.interf.view.OnAppItemSelectListener;
-import com.android.lib.base.listener.BaseOnPagerChangeListener;
+import com.android.lib.base.interf.listener.BaseOnPagerChangeListener;
 
 import java.util.ArrayList;
 

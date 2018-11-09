@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.android.lib.R;
 import com.android.lib.base.interf.view.OnAppItemLongClickListener;
 import com.android.lib.base.interf.view.OnAppItemSelectListener;
-import com.android.lib.base.listener.BaseOnPagerChangeListener;
+import com.android.lib.base.interf.listener.BaseOnPagerChangeListener;
 import com.android.lib.util.LogUtil;
 
 import java.util.ArrayList;

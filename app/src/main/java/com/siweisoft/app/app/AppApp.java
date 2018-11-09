@@ -12,9 +12,4 @@ public class AppApp extends LibAplication {
         super.onCreate();
 //        FlowManager.init(this);
     }
-
-    @Override
-    public void initImagePicker() {
-
-    }
 }

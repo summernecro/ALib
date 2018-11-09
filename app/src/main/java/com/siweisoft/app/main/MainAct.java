@@ -2,6 +2,7 @@ package com.siweisoft.app.main;
 
 //by summer on 2018-03-29.
 
+import android.content.IntentFilter;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.android.lib.base.interf.view.OnAppItemSelectListener;
 import com.android.lib.network.bean.res.BaseResBean;
 import com.android.lib.network.news.NetAdapter;
 import com.android.lib.network.news.NetGet;
+import com.android.lib.service.main.KeepLiveService;
 import com.android.lib.util.ToastUtil;
 //import com.raizlabs.android.dbflow.sql.language.Select;
 import com.android.lib.base.fragment.FragUtil;
@@ -40,12 +42,17 @@ public class MainAct extends BaseUIActivity<MainUIOpe,MainValue> implements View
 //        findViewById(R.id.tv_text).setOnClickListener(this);
 //    }
 
+    OneReceiver oneReceiver;
 
     @Override
     protected void initNow() {
         super.initNow();
         //getP().getV().getLoadUtil().startLoadingDefault(this, (ViewGroup) getP().getU().getBind().bottommenu,getResources().getColor(R.color.color_red_500));
         getPU().initFrag(this,getPV().getFragments(),MainValue.模块ID,MainValue.模块);
+
+        KeepLiveService.startBackGroundOne(this);
+        oneReceiver = new OneReceiver();
+        registerReceiver(oneReceiver, new IntentFilter(KeepLiveService.class.getSimpleName()));
 
 
     }

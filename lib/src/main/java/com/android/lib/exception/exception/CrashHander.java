@@ -5,7 +5,7 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.android.lib.aplication.LibAplication;
-import com.android.lib.base.activity.BaseActivity;
+import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.base.interf.OnFinishListener;
 import com.android.lib.util.LogUtil;
 
@@ -68,8 +68,8 @@ public class CrashHander implements Thread.UncaughtExceptionHandler {
      */
     private void restart(final Thread thread, final Throwable ex) {
         LibAplication libAplication = null;
-        if (context instanceof BaseActivity) {
-            BaseActivity activity = (BaseActivity) context;
+        if (context instanceof BaseUIActivity) {
+            BaseUIActivity activity = (BaseUIActivity) context;
             libAplication = (LibAplication) activity.getApplication();
             libAplication.exit();
         } else if (context instanceof LibAplication) {

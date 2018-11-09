@@ -5,21 +5,15 @@ package com.siweisoft.app.video;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
-import com.android.lib.GlideApp;
 import com.android.lib.base.adapter.AppsDataBindingAdapter;
-import com.android.lib.base.listener.ViewListener;
+import com.android.lib.base.interf.listener.ViewListener;
 import com.android.lib.base.ope.BaseUIOpe;
 import com.android.lib.bean.AppViewHolder;
-import com.android.lib.util.LogUtil;
 import com.android.lib.view.ItemDecoration.MyItemDecoration2;
-import com.android.lib.view.bottommenu.Msg;
 import com.siweisoft.app.BR;
 import com.siweisoft.app.R;
-import com.siweisoft.app.databinding.ActSettBinding;
 import com.siweisoft.app.databinding.ActVideoBinding;
 import com.siweisoft.app.databinding.ItemVideoBinding;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 

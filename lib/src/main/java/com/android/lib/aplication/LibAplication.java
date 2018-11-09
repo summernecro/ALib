@@ -33,7 +33,6 @@ public  abstract  class LibAplication extends MultiDexApplication {
      */
     protected void initApplication() {
         initSysConfig();
-        initImagePicker();
         initXutils();
     }
 
@@ -51,11 +50,6 @@ public  abstract  class LibAplication extends MultiDexApplication {
         ValueConstant.DIMEN_1 = (int) getResources().getDimension(R.dimen.dimen_1);
         SPUtil.getInstance().init(this);
     }
-
-    /**
-     * 初始化图片加载了imagepicker图片选择器
-     */
-    public abstract  void initImagePicker();
 
     public void initXutils() {
         x.Ext.init(this);

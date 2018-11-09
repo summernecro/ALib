@@ -3,6 +3,7 @@
     package="com.siweisoft.app">
 
     <application
+        android:persistent="true"
         android:name=".app.AppApp"
         tools:replace="android:label,android:theme"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +23,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+       <!-- <service android:name="com.android.lib.service.main.KeepLiveService" android:process=":backgroundone">
+            <intent-filter android:priority="1000">
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>-->
+
     </application>
 
 </manifest>
