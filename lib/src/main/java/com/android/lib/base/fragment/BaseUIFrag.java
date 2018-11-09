@@ -316,19 +316,36 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
 
 
     public void onStart(AnimationListener.Stop stopListener){
-        ViewAnimator.animate(getView()).translationX(getView().getWidth(),0).alpha(1,1).duration(300).start().onStop(stopListener);
+        if(booleanAnim()[0]){
+            ViewAnimator.animate(getView()).translationX(getView().getWidth(),0).alpha(1,1).duration(300).start().onStop(stopListener);
+        }else{
+            stopListener.onStop();
+        }
+
     }
 
     public void onBackOut(){
-        ViewAnimator.animate(getView()).translationX(0,-getView().getWidth()).alpha(1,1).duration(300).start();
+        if(booleanAnim()[1]){
+            ViewAnimator.animate(getView()).translationX(0,-getView().getWidth()).alpha(1,1).duration(300).start();
+        }else{
+
+        }
     }
 
     public void onRemove(AnimationListener.Stop stopListener){
-        ViewAnimator.animate(getView()).translationX(0,getView().getWidth()).alpha(1,1).duration(300).start().onStop(stopListener);
+        if(booleanAnim()[2]){
+            ViewAnimator.animate(getView()).translationX(0,getView().getWidth()).alpha(1,1).duration(300).start().onStop(stopListener);
+        }else{
+            stopListener.onStop();
+        }
     }
 
     public void onBackIn(){
-        ViewAnimator.animate(getView()).translationX(-getView().getWidth()/2,0).alpha(1,1).duration(300).start();
+        if(booleanAnim()[3]){
+            ViewAnimator.animate(getView()).translationX(-getView().getWidth()/2,0).alpha(1,1).duration(300).start();
+        }else{
+
+        }
     }
 
 
@@ -372,5 +389,13 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
 
     public void setLastFrag(BaseUIFrag lastFrag) {
         this.lastFrag = lastFrag;
+    }
+
+    /**
+     * onStart  onBackOut  onRemove onBackIn
+     * @return
+     */
+    public Boolean[] booleanAnim(){
+        return new Boolean[]{true,true,true,true};
     }
 }
