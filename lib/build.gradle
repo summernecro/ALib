@@ -130,6 +130,8 @@ dependencies {
 
     api 'com.jzxiang.pickerview:TimePickerDialog:1.0.1'//日期选择
 
+    api 'com.gyf.immersionbar:immersionbar:2.3.2'//沉浸式状态栏
+
     //    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     //    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"

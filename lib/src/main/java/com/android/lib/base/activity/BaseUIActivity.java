@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 
 import com.android.lib.R;
 import com.android.lib.aplication.LibAplication;
@@ -15,6 +16,7 @@ import com.android.lib.base.ope.BaseValue;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.activity.ActivityUtil;
 import com.android.lib.view.bottommenu.Msg;
+import com.gyf.barlibrary.ImmersionBar;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -43,7 +45,9 @@ public abstract class BaseUIActivity<A extends BaseUIOpe,C extends BaseValue> ex
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        ImmersionBar.with(this).transparentBar().transparentNavigationBar().transparentStatusBar().init();
         synchronized (BaseUIActivity.class){
             uniqueid= System.currentTimeMillis();
             LogUtil.E("uniqueid:"+uniqueid);
@@ -177,6 +181,7 @@ public abstract class BaseUIActivity<A extends BaseUIOpe,C extends BaseValue> ex
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ImmersionBar.with(this).destroy();
         moudles.clear();
         if(registerEventBus()){
             EventBus.getDefault().unregister(this);
