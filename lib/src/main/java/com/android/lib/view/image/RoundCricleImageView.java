@@ -6,7 +6,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Outline;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
@@ -14,6 +13,8 @@ import android.widget.ImageView;
 
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.ScreenUtil;
+
+import androidx.annotation.Nullable;
 
 public class RoundCricleImageView extends ImageView {
 

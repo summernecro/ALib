@@ -1,24 +1,20 @@
 package com.android.lib.base.ope;
 
 import android.content.Context;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.base.fragment.BaseUIFrag;
-import com.android.lib.bean.AppViewHolder;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 
-import com.android.lib.databinding.ActBaseuiBinding;
 import com.android.lib.util.ClickUtil;
 import com.android.lib.util.LogUtil;
-import com.github.florent37.viewanimator.AnimationListener;
-import com.github.florent37.viewanimator.ViewAnimator;
 
 /**
  * ui处理操作者 处理对象 uibean fragment view

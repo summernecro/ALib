@@ -3,13 +3,11 @@ package com.android.lib.util;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-
-import com.android.lib.util.activity.ActivityUtil;
 
 // android:fitsSystemWindows="true"
 //android:clipToPadding="true"

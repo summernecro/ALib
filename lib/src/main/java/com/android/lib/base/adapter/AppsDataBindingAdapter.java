@@ -3,15 +3,15 @@ package com.android.lib.base.adapter;
 //by summer on 2017-06-20.
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.lib.R;
-import com.android.lib.base.interf.listener.ViewListener;
 import com.android.lib.bean.AppViewHolder;
 
 import java.util.List;

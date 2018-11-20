@@ -1,11 +1,12 @@
 package com.android.lib.base.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.android.lib.R;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * recycleview适配器的基类

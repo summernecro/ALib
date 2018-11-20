@@ -2,7 +2,7 @@ package com.android.lib.bean;
 
 //by summer on 17-08-28.
 
-import android.databinding.Bindable;
+import androidx.databinding.Bindable;
 
 public class TitleBean extends BaseBean {
 

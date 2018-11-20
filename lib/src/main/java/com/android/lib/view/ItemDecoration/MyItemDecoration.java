@@ -4,10 +4,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.android.lib.R;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by ${viwmox} on 2016-08-30.

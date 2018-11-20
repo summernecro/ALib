@@ -4,7 +4,7 @@ package com.siweisoft.app.main;
 
 import android.content.IntentFilter;
 import android.os.Environment;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,9 +17,6 @@ import com.android.lib.service.main.KeepLiveService;
 import com.android.lib.util.ToastUtil;
 //import com.raizlabs.android.dbflow.sql.language.Select;
 import com.android.lib.base.fragment.FragUtil;
-import com.siweisoft.app.video.VideoFrag;
-
-import java.util.ArrayList;
 
 public class MainAct extends BaseUIActivity<MainUIOpe,MainValue> implements View.OnClickListener,OnAppItemSelectListener {
 

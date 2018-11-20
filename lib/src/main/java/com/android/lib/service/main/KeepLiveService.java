@@ -14,7 +14,6 @@ import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.android.lib.R;
@@ -23,6 +22,8 @@ import com.android.lib.util.data.DateFormatUtil;
 
 import java.util.Date;
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 public class KeepLiveService extends Service {
 

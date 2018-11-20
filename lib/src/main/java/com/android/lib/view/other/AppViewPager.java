@@ -1,10 +1,11 @@
 package com.android.lib.view.other;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
 import java.lang.reflect.Field;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by ${viwmox} on 2016-04-28.

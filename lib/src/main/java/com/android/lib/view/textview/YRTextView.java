@@ -3,9 +3,10 @@ package com.android.lib.view.textview;
 //by summer on 2017-05-31.
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 public class YRTextView extends TextView {
 

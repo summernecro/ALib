@@ -2,11 +2,9 @@ package com.android.lib.bean;
 
 //by summer on 2017-06-20.
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
-import android.databinding.Observable;
-import android.databinding.PropertyChangeRegistry;
-import android.support.annotation.NonNull;
+import androidx.databinding.Bindable;
+import androidx.databinding.Observable;
+import androidx.databinding.PropertyChangeRegistry;
 
 //import com.raizlabs.android.dbflow.annotation.ColumnIgnore;
 //import com.raizlabs.android.dbflow.config.FlowManager;

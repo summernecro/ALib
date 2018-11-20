@@ -1,8 +1,8 @@
 package com.android.lib.base.activity;
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -15,7 +15,6 @@ import com.android.lib.base.ope.BaseValue;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.activity.ActivityUtil;
 import com.android.lib.view.bottommenu.Msg;
-import com.github.florent37.viewanimator.AnimationListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

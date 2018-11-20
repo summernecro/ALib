@@ -3,10 +3,11 @@ package com.android.lib.base.interf;
 //by summer on 2018-01-10.
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
 
 public class FragAdapter implements FragI {
     @Override

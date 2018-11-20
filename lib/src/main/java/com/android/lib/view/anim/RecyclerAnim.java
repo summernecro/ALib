@@ -1,11 +1,12 @@
 package com.android.lib.view.anim;
 
 import android.content.Context;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.RecyclerView;
 import android.view.animation.AnimationUtils;
 
 import com.android.lib.R;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 /**

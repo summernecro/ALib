@@ -6,13 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 
 import com.android.lib.appthread.AppThread;
 import com.android.lib.base.interf.OnFinishListener;
 import com.android.lib.base.interf.OnFinishWithObjI;
 import com.android.lib.constant.ValueConstant;
 import com.android.lib.util.LogUtil;
+
+import androidx.annotation.Nullable;
 
 
 /**

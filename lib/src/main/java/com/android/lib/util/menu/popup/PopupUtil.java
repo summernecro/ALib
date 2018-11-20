@@ -5,16 +5,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.PopupWindow;
 
 import com.android.lib.R;
 import com.android.lib.constant.ValueConstant;
 import com.android.lib.util.ScreenUtil;
-import com.android.lib.view.pop.PopView;
 
 import java.util.List;
+
+import androidx.annotation.RequiresApi;
 
 /**
  * Created by ${viwmox} on 2016-11-14.
@@ -108,9 +108,9 @@ public class PopupUtil {
 
 
     public void show(Activity context, View archerview, List<String> strs){
-        PopView p = new PopView(context);
-        p.init(context,p,strs);
-        show(context,p,archerview);
+//        PopView p = new PopView(context);
+//        p.init(context,p,strs);
+//        show(context,p,archerview);
     }
 
     public void dimess() {

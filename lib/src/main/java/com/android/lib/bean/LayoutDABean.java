@@ -2,7 +2,7 @@ package com.android.lib.bean;
 
 //by summer on 2017-07-18.
 
-import android.databinding.ObservableField;
+import androidx.databinding.ObservableField;
 
 public class LayoutDABean extends BaseBean {
 

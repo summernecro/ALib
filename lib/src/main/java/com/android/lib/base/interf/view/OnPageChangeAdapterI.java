@@ -2,7 +2,8 @@ package com.android.lib.base.interf.view;
 
 //by summer on 2017-06-16.
 
-import android.support.v4.view.ViewPager;
+
+import androidx.viewpager.widget.ViewPager;
 
 public class OnPageChangeAdapterI implements ViewPager.OnPageChangeListener {
 

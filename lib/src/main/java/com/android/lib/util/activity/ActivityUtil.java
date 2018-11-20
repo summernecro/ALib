@@ -4,11 +4,12 @@ package com.android.lib.util.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import com.android.lib.base.activity.BaseUIActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * activity 管理

@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <!---->
-    <android.support.v7.widget.RecyclerView
+    <androidx.appcompat.widget.RecyclerView
         android:alpha="1"
         android:layout_gravity="center_horizontal"
         android:id="@+id/rcv_pop"

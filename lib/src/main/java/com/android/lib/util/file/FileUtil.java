@@ -3,7 +3,6 @@ package com.android.lib.util.file;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentActivity;
 
 import com.android.lib.base.interf.OnFinishWithObjI;
 
@@ -19,6 +18,8 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
+
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by ${viwmox} on 2016-10-13.

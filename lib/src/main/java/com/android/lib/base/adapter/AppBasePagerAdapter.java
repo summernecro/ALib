@@ -1,9 +1,10 @@
 package com.android.lib.base.adapter;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class AppBasePagerAdapter extends FragmentStatePagerAdapter {
     protected List<Fragment> fragments;
 
 
-    public AppBasePagerAdapter(FragmentManager fm, Context context,List<Fragment> fragments) {
+    public AppBasePagerAdapter(FragmentManager fm, Context context, List<Fragment> fragments) {
         super(fm);
         this.context = context;
         this.fragments = fragments;

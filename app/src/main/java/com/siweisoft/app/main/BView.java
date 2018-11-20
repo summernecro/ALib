@@ -3,12 +3,13 @@ package com.siweisoft.app.main;
 //by summer on 2018-09-20.
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
 import com.android.lib.util.LogUtil;
+
+import androidx.annotation.Nullable;
 
 public class BView extends LinearLayout {
 

@@ -1,7 +1,7 @@
 package com.android.lib.base.ope;
 
 import android.content.Context;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.view.LayoutInflater;
 import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.base.fragment.BaseUIFrag;

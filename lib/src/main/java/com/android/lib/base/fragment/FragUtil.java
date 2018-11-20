@@ -3,7 +3,6 @@ package com.android.lib.base.fragment;
 //by summer on 2018-01-12.
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 
 import com.android.lib.base.activity.BaseUIActivity;
 import com.android.lib.constant.ValueConstant;
@@ -12,6 +11,8 @@ import com.android.lib.util.fragment.two.Container;
 import com.github.florent37.viewanimator.AnimationListener;
 
 import java.util.HashMap;
+
+import androidx.fragment.app.FragmentTransaction;
 
 public class FragUtil {
 

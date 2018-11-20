@@ -1,7 +1,6 @@
 package com.android.lib.aplication;
 
 import android.app.Application;
-import android.support.v4.app.FragmentActivity;
 
 import com.android.lib.R;
 import com.android.lib.constant.ValueConstant;
@@ -14,6 +13,8 @@ import com.android.lib.util.activity.ActivityUtil;
 import org.xutils.x;
 
 import java.util.List;
+
+import androidx.fragment.app.FragmentActivity;
 
 
 /**

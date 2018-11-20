@@ -1,13 +1,14 @@
 package com.android.lib.base.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.android.lib.base.interf.FragI;
 
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by summer on 2018/2/6 22:21.

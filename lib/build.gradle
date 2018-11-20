@@ -74,24 +74,30 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libDir')
 
     //android 基本支持库
-    api 'com.android.support:support-v4:28+'
-    api 'com.android.support:appcompat-v7:28+'
-    api 'com.android.support:cardview-v7:28+'
-    api 'com.android.support:design:28+'
-    api 'com.android.support:recyclerview-v7:28+'
-    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    api 'androidx.annotation:annotation:1.0.0'
+    api 'androidx.fragment:fragment:1.0.0'
+    api 'androidx.legacy:legacy-support-core-ui:1.0.0'
+    api 'androidx.core:core:1.0.0'
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'androidx.appcompat:appcompat:1.0.0'
+    api 'androidx.cardview:cardview:1.0.0'
+    api 'com.google.android.material:material:1.0.0-rc01'
+    api 'androidx.recyclerview:recyclerview:1.0.0'
+    api 'androidx.constraintlayout:constraintlayout:1.1.2'
 
-    api 'com.jakewharton:butterknife:8.4.0'//注解
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    api 'com.jakewharton:butterknife:9.0.0-rc1'//注解
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
 
     api 'com.github.florent37:viewanimator:1.0.5'//动画帮助
 
     api 'org.greenrobot:eventbus:3.0.0'//消息总线处理
 
-    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'//图片裁剪
 
-    api 'com.github.bumptech.glide:glide:4.5.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'//图片加载
+    //api 'com.github.chrisbanes:PhotoView:2.2.0'//图片缩放
+
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'//图片加载
 
     api 'com.journeyapps:zxing-android-embedded:3.5.0'//二维码扫码
 
@@ -104,7 +110,7 @@ dependencies {
     api 'com.romandanylyk:pageindicatorview:1.0.2'//选项卡底部导航
 
     api 'com.google.code.gson:gson:2.3.1'
-    api 'com.hedgehog.ratingbar:app:1.1.2'
+    //api 'com.hedgehog.ratingbar:app:1.1.2'
 
     //compile 'com.shuyu:GSYVideoPlayer:2.0.6'
     api 'de.hdodenhof:circleimageview:2.1.0'
@@ -116,8 +122,8 @@ dependencies {
 
     //api 'com.android.support:multidex:1.0.2'//并将 Dalvik 可执行文件分包库添加为依赖项
 
-    api 'me.drakeet.support:toastcompat:1.0.2'
-    api 'com.tubb.smrv:swipemenu-recyclerview:5.4.4'
+    //api 'me.drakeet.support:toastcompat:1.0.2'
+    //api 'com.tubb.smrv:swipemenu-recyclerview:5.4.4'
 
     api 'org.projectlombok:lombok:1.16.20'
     annotationProcessor 'org.projectlombok:lombok:1.16.20'

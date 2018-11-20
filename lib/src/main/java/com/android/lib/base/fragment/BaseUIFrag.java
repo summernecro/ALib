@@ -1,11 +1,12 @@
 package com.android.lib.base.fragment;
 
 import android.content.Context;
-import android.databinding.ViewDataBinding;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ import com.android.lib.constant.ValueConstant;
 import com.android.lib.databinding.LayoutBaseuiBinding;
 import com.android.lib.util.LoadUtil;
 import com.android.lib.util.LogUtil;
-import com.android.lib.util.system.HandleUtil;
 import com.android.lib.util.video.TipUtil;
 import com.android.lib.view.bottommenu.Msg;
 import com.github.florent37.viewanimator.AnimationListener;

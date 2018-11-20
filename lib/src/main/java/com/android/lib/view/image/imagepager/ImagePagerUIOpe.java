@@ -1,7 +1,6 @@
 package com.android.lib.view.image.imagepager;
 
-import android.content.Context;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
 
 import com.android.lib.base.ope.BaseUIOpe;
 import com.android.lib.databinding.ActivityImagesVpBinding;

@@ -2,25 +2,19 @@ package com.siweisoft.app.main;
 
 //by summer on 2018-03-29.
 
-import android.content.res.ColorStateList;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.View;
 
 import com.android.lib.base.activity.BaseUIActivity;
-import com.android.lib.base.adapter.AppBasePagerAdapter2;
 import com.android.lib.base.fragment.BaseUIFrag;
 import com.android.lib.base.fragment.FragUtil;
 import com.android.lib.base.interf.view.OnAppItemSelectListener;
 import com.android.lib.base.ope.BaseUIOpe;
-import com.android.lib.util.fragment.two.FragManager2;
 import com.android.lib.view.bottommenu.BottomMenuBean;
-import com.github.florent37.viewanimator.ViewAnimator;
-import com.rd.animation.type.AnimationType;
 import com.siweisoft.app.R;
 import com.siweisoft.app.databinding.ActMainBinding;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainUIOpe extends BaseUIOpe<ActMainBinding>{
 

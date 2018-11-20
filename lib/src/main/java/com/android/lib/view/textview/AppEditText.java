@@ -2,12 +2,13 @@ package com.android.lib.view.textview;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.annotation.RequiresApi;
 
 /**
  * Created by ${viwmox} on 2017-02-21.

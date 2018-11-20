@@ -3,7 +3,6 @@ package com.android.lib.util.fragment.two;
 //by summer on 2018-01-12.
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.android.lib.R;
@@ -13,6 +12,8 @@ import com.android.lib.constant.ValueConstant;
 import com.android.lib.util.LogUtil;
 
 import java.util.HashMap;
+
+import androidx.fragment.app.FragmentTransaction;
 
 public class FragManager2  {
 

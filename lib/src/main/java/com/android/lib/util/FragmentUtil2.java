@@ -3,10 +3,11 @@ package com.android.lib.util;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.lib.R;
 import com.android.lib.base.interf.OnFinishListener;
@@ -37,7 +38,7 @@ public class FragmentUtil2 {
     }
 
 
-    public void showAndHidden(FragmentActivity activity,ArrayList<Fragment> fragments,int position){
+    public void showAndHidden(FragmentActivity activity, ArrayList<Fragment> fragments, int position){
         for(int i=0;i<fragments.size();i++){
             FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
             //transaction.setCustomAnimations(R.anim.anim_push_right_in_200, R.anim.anim_push_left_out_200);

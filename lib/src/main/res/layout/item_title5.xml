@@ -9,7 +9,7 @@
             name="titlebean5"
             type="String" />
     </data>
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ftitle_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimens_base_title_clip"
@@ -76,7 +76,7 @@
 
 
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -115,9 +115,9 @@
                 android:paddingTop="3dp"
                 android:textColor="@color/color_title_select"
                 android:visibility="gone" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

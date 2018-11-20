@@ -2,7 +2,6 @@ package com.android.lib.view.switchmenu;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,8 @@ import com.android.lib.base.interf.view.OnAppItemSelectListener;
 import com.android.lib.base.interf.listener.BaseOnPagerChangeListener;
 
 import java.util.ArrayList;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by ${viwmox} on 2016-10-18.

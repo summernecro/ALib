@@ -1,6 +1,7 @@
 package com.android.lib.base.interf.listener;
 
-import android.support.v4.view.ViewPager;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by ${viwmox} on 2016-04-28.

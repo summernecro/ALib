@@ -7,12 +7,13 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
 import com.android.lib.R;
 import com.android.lib.util.ScreenUtil;
+
+import androidx.annotation.Nullable;
 
 public class SharpTextView extends TextView {
 

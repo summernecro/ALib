@@ -3,12 +3,13 @@ package com.android.lib.view.recyclerview;
 //by summer on 17-10-18.
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.android.lib.util.LogUtil;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MyRecyclerView extends RecyclerView {
 

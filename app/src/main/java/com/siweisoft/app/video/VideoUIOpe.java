@@ -2,11 +2,9 @@ package com.siweisoft.app.video;
 
 //by summer on 2018-07-13.
 
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.android.lib.base.adapter.AppsDataBindingAdapter;
-import com.android.lib.base.interf.listener.ViewListener;
 import com.android.lib.base.ope.BaseUIOpe;
 import com.android.lib.bean.AppViewHolder;
 import com.android.lib.view.ItemDecoration.MyItemDecoration2;
@@ -16,6 +14,8 @@ import com.siweisoft.app.databinding.ActVideoBinding;
 import com.siweisoft.app.databinding.ItemVideoBinding;
 
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class VideoUIOpe extends BaseUIOpe<ActVideoBinding>{
 

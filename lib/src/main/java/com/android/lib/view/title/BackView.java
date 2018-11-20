@@ -1,7 +1,6 @@
 package com.android.lib.view.title;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 
 import com.android.lib.R;
 
+import androidx.annotation.Nullable;
 import butterknife.ButterKnife;
 
 /**

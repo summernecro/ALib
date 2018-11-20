@@ -3,13 +3,14 @@ package com.android.lib.view.image.imagepager;
 //by summer on 2017-06-15.
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.android.lib.base.fragment.BaseUIFrag;
 import com.android.lib.constant.ValueConstant;
 
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
 
 public class ImagePagerFrag extends BaseUIFrag<ImagePagerUIOpe,ImagePagerValue> {
 

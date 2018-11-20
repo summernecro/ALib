@@ -2,24 +2,22 @@ package com.siweisoft.app.text;
 
 //by summer on 2018-07-13.
 
-import android.graphics.Color;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.android.lib.GlideApp;
 import com.android.lib.base.adapter.AppsDataBindingAdapter;
-import com.android.lib.base.fragment.FragUtil;
 import com.android.lib.base.ope.BaseUIOpe;
 import com.android.lib.bean.AppViewHolder;
 import com.android.lib.util.ColorUtil;
 import com.android.lib.util.RandomUtil;
-import com.github.florent37.viewanimator.ViewAnimator;
 import com.siweisoft.app.BR;
 import com.siweisoft.app.R;
 import com.siweisoft.app.databinding.ActTextBinding;
 import com.siweisoft.app.databinding.ItemTestBinding;
 
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class TextUIOpe extends BaseUIOpe<ActTextBinding>{
 

@@ -3,11 +3,12 @@ package com.android.lib.view.swipeview.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorCompat;
-import android.support.v4.view.ViewPropertyAnimatorListener;
-import android.support.v4.view.ViewPropertyAnimatorUpdateListener;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewPropertyAnimatorCompat;
+import androidx.core.view.ViewPropertyAnimatorListener;
+import androidx.core.view.ViewPropertyAnimatorUpdateListener;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;

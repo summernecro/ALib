@@ -2,15 +2,11 @@ package com.android.lib.util.dialog;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
+import androidx.fragment.app.FragmentManager;
+
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.android.lib.R;
-import com.android.lib.util.ScreenUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;

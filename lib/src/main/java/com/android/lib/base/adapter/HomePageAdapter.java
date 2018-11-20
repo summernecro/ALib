@@ -1,13 +1,14 @@
 package com.android.lib.base.adapter;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.lib.base.interf.OnFinishListener;
 
 import java.util.ArrayList;
+
+import androidx.viewpager.widget.PagerAdapter;
 
 public class HomePageAdapter extends PagerAdapter {
 

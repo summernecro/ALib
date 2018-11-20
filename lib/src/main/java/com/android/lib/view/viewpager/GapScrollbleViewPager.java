@@ -5,11 +5,12 @@ package com.android.lib.view.viewpager;
  */
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.android.lib.util.LogUtil;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by ${viwmox} on 2016-11-24.
