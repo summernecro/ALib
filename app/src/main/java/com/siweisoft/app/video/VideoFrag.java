@@ -46,7 +46,7 @@ public class VideoFrag extends BaseUIFrag<VideoUIOpe,VideoValue> {
     }
 
     @Override
-    protected boolean is注册事件总线() {
+    protected boolean isRegistEventBus() {
         return true;
     }
 }

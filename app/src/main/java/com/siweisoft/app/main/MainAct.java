@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.lib.base.activity.BaseUIActivity;
+import com.android.lib.base.fragment.BaseUIFrag;
 import com.android.lib.base.interf.view.OnAppItemSelectListener;
 import com.android.lib.network.bean.res.BaseResBean;
 import com.android.lib.network.news.NetAdapter;
@@ -17,6 +18,8 @@ import com.android.lib.service.main.KeepLiveService;
 import com.android.lib.util.ToastUtil;
 //import com.raizlabs.android.dbflow.sql.language.Select;
 import com.android.lib.base.fragment.FragUtil;
+import com.bumptech.glide.Glide;
+import com.siweisoft.app.text.TextFrag;
 
 public class MainAct extends BaseUIActivity<MainUIOpe,MainValue> implements View.OnClickListener,OnAppItemSelectListener {
 
@@ -44,6 +47,13 @@ public class MainAct extends BaseUIActivity<MainUIOpe,MainValue> implements View
     @Override
     protected void initNow() {
         super.initNow();
+//        Glide.get(getActivity()).clearMemory();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Glide.get(getActivity()).clearDiskCache();
+//            }
+//        }).start();
         //getP().getV().getLoadUtil().startLoadingDefault(this, (ViewGroup) getP().getU().getBind().bottommenu,getResources().getColor(R.color.color_red_500));
         getPU().initFrag(this,getPV().getFragments(),MainValue.模块ID,MainValue.模块);
 
@@ -51,6 +61,7 @@ public class MainAct extends BaseUIActivity<MainUIOpe,MainValue> implements View
         oneReceiver = new OneReceiver();
         registerReceiver(oneReceiver, new IntentFilter(KeepLiveService.class.getSimpleName()));
 
+        TextFrag textFrag = new TextFrag();
 
     }
 

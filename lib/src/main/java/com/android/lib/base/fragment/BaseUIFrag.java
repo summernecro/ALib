@@ -54,8 +54,6 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
     protected ViewGroup baseUIRoot;
 
 
-    private LoadUtil loadUtil = new LoadUtil();
-
     private TipUtil tipUtil = new TipUtil();
 
 
@@ -65,11 +63,8 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
 
     private BaseUIActivity activity;
 
-    private  BaseUIFrag frag;
-
+    //每个fragment实例的唯一id
     private long uniqueid;
-
-    private BaseUIFrag lastFrag;
 
 
     public BaseUIFrag() {
@@ -95,8 +90,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
         if(savedInstanceState!=null){
             //getP().setVa((C) savedInstanceState.getSerializable(ValueConstant.DATA_VALUE));
         }
-        frag = this;
-        if(is注册事件总线()){
+        if(isRegistEventBus()){
             EventBus.getDefault().register(this);
         }
         fragIs.onCreate(savedInstanceState);
@@ -140,8 +134,8 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
 
                     }
                 });
-                if(getLastFrag()!=null){
-                    getLastFrag().onBackOut();
+                if(getTargetFragment()!=null){
+                    ((BaseUIFrag)getTargetFragment()).onBackOut();
                 }
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
@@ -264,7 +258,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
 
     @Override
     public void onDestroy() {
-        if(is注册事件总线()){
+        if(isRegistEventBus()){
             EventBus.getDefault().unregister(this);
         }
         fragIs.onDestroy();
@@ -295,13 +289,6 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
         fragIs.getFragIs().add(fragI);
     }
 
-    public void startLoading(){
-        loadUtil.startLoading(getActivity(), (ViewGroup) getView());
-    }
-
-    public void stopLoading(){
-        loadUtil.stopLoading( (ViewGroup) getView());
-    }
 
     public void showTips(String txt){
 //        if(getBaseUIAct()==null){
@@ -351,7 +338,7 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    protected boolean is注册事件总线(){
+    protected boolean isRegistEventBus(){
         return false;
     }
 
@@ -381,14 +368,6 @@ public abstract class BaseUIFrag<A extends BaseUIOpe,C extends BaseValue> extend
 
     public long getUniqueid() {
         return uniqueid;
-    }
-
-    public BaseUIFrag getLastFrag() {
-        return lastFrag;
-    }
-
-    public void setLastFrag(BaseUIFrag lastFrag) {
-        this.lastFrag = lastFrag;
     }
 
 

@@ -37,7 +37,7 @@ public class FragUtil {
         }
 
         activity.setMoudle(moudle);
-        fragment.setLastFrag(current);
+        fragment.setTargetFragment(current,123);
         fragment.setActivity(activity);
         fragment.initUI();
         fragment.getArguments().putString(ValueConstant.容器,moudle);

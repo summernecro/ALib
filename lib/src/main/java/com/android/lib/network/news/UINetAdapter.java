@@ -3,6 +3,8 @@ package com.android.lib.network.news;
 import android.content.Context;
 
 import android.view.View;
+import android.view.ViewGroup;
+
 import com.android.lib.R;
 import com.android.lib.base.fragment.BaseUIFrag;
 import com.android.lib.bean.BaseBean;
@@ -18,7 +20,6 @@ public abstract class UINetAdapter<A> extends NetAdapter<A> {
 
     private int isload = 0;
 
-    LoadUtil loadUtil = new LoadUtil();
 
     public UINetAdapter(Context context) {
         super(context);
@@ -52,9 +53,9 @@ public abstract class UINetAdapter<A> extends NetAdapter<A> {
     public boolean onNetStart(String url, String gson) {
         if(isload==1){
             if(baseUIFrag!=null){
-                baseUIFrag.startLoading();
+                LoadUtil.getInstance().startLoading(baseUIFrag.getContext(), (ViewGroup) baseUIFrag.getView());
             }else{
-                loadUtil.onStartLoading(context, url);
+                LoadUtil.getInstance().onStartLoading(context, url);
             }
         }
         return super.onNetStart(url, gson);
@@ -74,7 +75,7 @@ public abstract class UINetAdapter<A> extends NetAdapter<A> {
     }
 
     public void stopLoading(){
-        loadUtil.onStopLoading(this.url);
+        LoadUtil.getInstance().onStopLoading(this.url);
     }
 
     public void stopRefreshORLoadMore(){
@@ -85,7 +86,7 @@ public abstract class UINetAdapter<A> extends NetAdapter<A> {
                 refreshLayout.finishLoadmore();
                 refreshLayout.finishRefresh();
             }
-            baseUIFrag.stopLoading();
+            LoadUtil.getInstance().stopLoading((ViewGroup) baseUIFrag.getView());
         }
     }
 }

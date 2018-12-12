@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:orientation="vertical">
 
 
@@ -12,12 +13,31 @@
             android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-    <com.wang.avi.AVLoadingIndicatorView
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:layout_centerInParent="true"
-        android:id="@+id/av"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:indicatorColor="@color/color_base"
-        app:indicatorName="BallTrianglePathIndicator" />
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.wang.avi.AVLoadingIndicatorView
+                android:layout_centerInParent="true"
+                android:id="@+id/av"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:indicatorColor="@color/color_base"
+                app:indicatorName="BallTrianglePathIndicator" />
+
+            <TextView
+                android:id="@+id/text"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginLeft="5dp"
+                android:text="加载中..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
 </RelativeLayout>
 </LinearLayout>

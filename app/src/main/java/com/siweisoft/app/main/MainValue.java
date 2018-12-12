@@ -16,16 +16,6 @@ import lombok.Setter;
 
 public class MainValue extends BaseValue {
 
-    LoadUtil loadUtil = new LoadUtil();
-
-    public LoadUtil getLoadUtil() {
-        return loadUtil;
-    }
-
-    public void setLoadUtil(LoadUtil loadUtil) {
-        this.loadUtil = loadUtil;
-    }
-
     public static final String 视频 = "视频";
 
     public static final String 图片 = "图片";

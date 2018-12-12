@@ -18,6 +18,7 @@ import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.wang.avi.Indicator;
+import com.wang.avi.indicators.LineScaleIndicator;
 
 import java.util.ArrayList;
 
@@ -61,35 +62,24 @@ public class LoadUtil {
     };
     ArrayList<MyDialog> dialogs = new ArrayList<>();
 
-    public void onStartLoading(Context activity, String tag) {
-        if(activity==null){
-            return;
+    private static LoadUtil instance;
+
+    public static LoadUtil getInstance(){
+        if(instance==null){
+            instance = new LoadUtil();
         }
-        MyDialog dialog = new MyDialog(activity, R.style.swdialog);
-        dialogs.add(dialog);
-        dialog.setTag(tag);
-        dialog.show();
-        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        dialog.getWindow().getAttributes().alpha = 1;
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        dialog.setContentView(R.layout.dialog_loading);
-        AVLoadingIndicatorView imageView;
-        imageView = (AVLoadingIndicatorView) dialog.findViewById(R.id.av);
-        imageView.setIndicatorColor(activity.getResources().getColor(R.color.color_base));
-        imageView.setIndicator("LineScalePulseOutRapidIndicator");
-        imageView.show();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setCancelable(false);
+        return instance;
+    }
+
+    private LoadUtil(){
+
+    }
+
+    public void onStartLoading(Context activity, String tag) {
+        onStartLoading(activity,"LineScalePulseOutRapidIndicator","加载中...",tag);
     }
 
 
-    /**
-     * 开始加载
-     * @param activity
-     * @param type
-     * @param text
-     * @param tag
-     */
     public void onStartLoading(Context activity, String type,String text,String tag) {
         if(activity==null){
             return;
@@ -133,6 +123,48 @@ public class LoadUtil {
         }
     }
 
+
+
+    public void startLoading(Context context,ViewGroup viewGroup,String str,Indicator indicator){
+        if( viewGroup.getChildAt(0) instanceof ViewGroup){
+            View loadingView;
+            ViewGroup viewGroup1 = (ViewGroup) viewGroup.getChildAt(0);
+            if(viewGroup1.getChildCount()>0&&viewGroup1.getChildAt(0) instanceof TitleView){
+                loadingView = LayoutInflater.from(context).inflate(R.layout.dialog_loading_havetitle,null);
+            }else{
+                loadingView = LayoutInflater.from(context).inflate(R.layout.dialog_loading,null);
+            }
+            TextView textView  = loadingView.findViewById(R.id.text);
+            textView.setText(str);
+            AVLoadingIndicatorView avLoadingIndicatorView = (AVLoadingIndicatorView) loadingView.findViewById(R.id.av);
+            viewGroup.addView(loadingView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            loadingView.setTag(R.id.data1,"dialog");
+            avLoadingIndicatorView.setIndicator(indicator);
+            avLoadingIndicatorView.show();
+        }
+    }
+
+    public void startLoading(Context context,ViewGroup viewGroup,String str){
+        startLoading(context,viewGroup,str,new LineScaleIndicator());
+    }
+
+
+    public void startLoading(Context context,ViewGroup viewGroup){
+        startLoading(context,viewGroup,"加载中...",new LineScaleIndicator());
+    }
+
+
+    public void stopLoading(ViewGroup viewGroup){
+        for(int i=0;i<viewGroup.getChildCount();i++){
+            View view = viewGroup.getChildAt(i);
+            if("dialog".equals(view.getTag(R.id.data1))){
+                viewGroup.removeView(view);
+                i--;
+            }
+        }
+    }
+
+
     public class MyDialog extends Dialog {
 
         private String tag;
@@ -158,47 +190,4 @@ public class LoadUtil {
         }
     }
 
-    View loadingView;
-
-    private Indicator indicator;
-
-    public void startLoading(Context context,ViewGroup viewGroup){
-        if( viewGroup.getChildAt(0) instanceof ViewGroup){
-            ViewGroup viewGroup1 = (ViewGroup) viewGroup.getChildAt(0);
-            if(viewGroup1.getChildCount()>0&&viewGroup1.getChildAt(0) instanceof TitleView){
-                loadingView = LayoutInflater.from(context).inflate(R.layout.dialog_loading_havetitle,null);
-            }else{
-                loadingView = LayoutInflater.from(context).inflate(R.layout.dialog_loading,null);
-            }
-            AVLoadingIndicatorView avLoadingIndicatorView = (AVLoadingIndicatorView) loadingView.findViewById(R.id.av);
-            viewGroup.addView(loadingView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            avLoadingIndicatorView.setIndicator(indicator==null?new BallTrianglePathIndicator():indicator);
-            avLoadingIndicatorView.show();
-        }
-    }
-
-
-    public void startLoadingDefault(Context context,ViewGroup viewGroup,int color){
-        loadingView = LayoutInflater.from(context).inflate(R.layout.dialog_loading,null);
-        AVLoadingIndicatorView avLoadingIndicatorView = (AVLoadingIndicatorView) loadingView.findViewById(R.id.av);
-        avLoadingIndicatorView.setIndicatorColor(color);
-        viewGroup.addView(loadingView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        avLoadingIndicatorView.setIndicator(indicator==null?new BallTrianglePathIndicator():indicator);
-        avLoadingIndicatorView.show();
-    }
-
-    public void stopLoading(ViewGroup viewGroup){
-        if(loadingView !=null && loadingView.getParent()==viewGroup){
-            viewGroup.removeView(loadingView);
-        }
-    }
-
-
-    public Indicator getIndicator() {
-        return indicator;
-    }
-
-    public void setIndicator(Indicator indicator) {
-        this.indicator = indicator;
-    }
 }

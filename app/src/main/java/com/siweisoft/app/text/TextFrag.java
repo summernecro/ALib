@@ -3,9 +3,11 @@ package com.siweisoft.app.text;
 //by summer on 2018-07-13.
 
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.lib.base.fragment.BaseUIFrag;
 import com.android.lib.base.fragment.FragUtil;
+import com.android.lib.util.LoadUtil;
 import com.android.lib.util.LogUtil;
 import com.android.lib.util.system.HandleUtil;
 import com.siweisoft.app.R;
@@ -26,19 +28,19 @@ public class TextFrag extends BaseUIFrag<TextUIOpe,VideoValue> {
         super.initNow();
         LogUtil.E(getPU().getView().getWidth());
         getPU().initimage(getPV().getUrl());
-        //getPV().getLoadUtil().onStartLoading(getBaseUIAct(),"123");
+        LoadUtil.getInstance().startLoading(getBaseUIAct(), (ViewGroup) getView());
        // getPU().initList(getPV().getList(),this);
         HandleUtil.getInstance().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //getPV().getLoadUtil().onStopLoading("123");
+                LoadUtil.getInstance().stopLoading((ViewGroup) getView());
                 //onClick(null);
             }
         }, 2000);
     }
 
     @Override
-    protected boolean is注册事件总线() {
+    protected boolean isRegistEventBus() {
         return true;
     }
 

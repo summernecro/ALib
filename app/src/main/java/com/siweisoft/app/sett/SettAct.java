@@ -33,7 +33,7 @@ public class SettAct extends BaseUIFrag<SettUIOpe,BaseValue> {
     }
 
     @Override
-    protected boolean is注册事件总线() {
+    protected boolean isRegistEventBus() {
         return true;
     }
 }

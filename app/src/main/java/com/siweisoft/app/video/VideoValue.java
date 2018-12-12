@@ -17,8 +17,6 @@ public class VideoValue extends BaseValue {
     @Setter
     private ArrayList<Integer> list = new ArrayList<>();
 
-    private LoadUtil loadUtil = new LoadUtil();
-
     private String url = "";
 
     @Override

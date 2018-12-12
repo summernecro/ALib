@@ -15,7 +15,6 @@ public abstract class DelayUINetAdapter extends UINetAdapter {
 
     Handler handler = new Handler();
     private int delay = 500;
-    LoadUtil loadUtil = new LoadUtil();
 
     public DelayUINetAdapter(Context context, int delay) {
         super(context);
@@ -33,7 +32,7 @@ public abstract class DelayUINetAdapter extends UINetAdapter {
                 @Override
                 public void run() {
                     onNetWorkResult(false, baseResBean);
-                    loadUtil.onStopLoading(tag);
+                    LoadUtil.getInstance().onStopLoading(tag);
                 }
             }, delay);
         } else {
@@ -42,7 +41,7 @@ public abstract class DelayUINetAdapter extends UINetAdapter {
                     @Override
                     public void run() {
                         onNetWorkResult(false, baseResBean);
-                        loadUtil.onStopLoading(tag);
+                        LoadUtil.getInstance().onStopLoading(tag);
                     }
                 }, delay);
             } else {
@@ -51,7 +50,7 @@ public abstract class DelayUINetAdapter extends UINetAdapter {
                         @Override
                         public void run() {
                             onNetWorkResult(true, baseResBean);
-                            loadUtil.onStopLoading(tag);
+                            LoadUtil.getInstance().onStopLoading(tag);
                         }
                     }, delay);
                 } else {
@@ -59,7 +58,7 @@ public abstract class DelayUINetAdapter extends UINetAdapter {
                         @Override
                         public void run() {
                             onNetWorkResult(true, baseResBean);
-                            loadUtil.onStopLoading(tag);
+                            LoadUtil.getInstance().onStopLoading(tag);
                         }
                     }, delay);
                 }

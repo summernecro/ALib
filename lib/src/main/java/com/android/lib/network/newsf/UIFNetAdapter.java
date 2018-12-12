@@ -3,6 +3,8 @@ package com.android.lib.network.newsf;
 import android.content.Context;
 
 import android.view.View;
+import android.view.ViewGroup;
+
 import com.android.lib.R;
 import com.android.lib.base.fragment.BaseUIFrag;
 import com.android.lib.bean.BaseBean;
@@ -27,7 +29,7 @@ public abstract class UIFNetAdapter<A> extends NetFAdapter<A> {
     @Override
     public boolean onNetStart(String url, String gson) {
         if(isload){
-            frag.startLoading();
+            LoadUtil.getInstance().startLoading(frag.getContext(), (ViewGroup) frag.getView());
         }
         return super.onNetStart(url, gson);
     }
@@ -51,7 +53,7 @@ public abstract class UIFNetAdapter<A> extends NetFAdapter<A> {
                 refreshLayout.finishLoadmore();
                 refreshLayout.finishRefresh();
             }
-            frag.stopLoading();
+            LoadUtil.getInstance().stopLoading((ViewGroup) frag.getView());
         }
     }
 }
