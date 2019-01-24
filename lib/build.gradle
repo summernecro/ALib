@@ -22,6 +22,11 @@ android {
         multiDexEnabled true
         //解决annotationProcessor注解类继承不了的问题
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
     }
 //    buildTypes {
 //        release {
@@ -85,8 +90,9 @@ dependencies {
     api 'androidx.recyclerview:recyclerview:1.0.0'
     api 'androidx.constraintlayout:constraintlayout:1.1.2'
 
-    api 'com.jakewharton:butterknife:9.0.0-rc1'//注解
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    api 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+
 
     api 'com.github.florent37:viewanimator:1.0.5'//动画帮助
 

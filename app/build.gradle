@@ -11,6 +11,10 @@ android {
         versionName "1.0"
         multiDexEnabled true
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
     }
     buildTypes {
         release {
@@ -32,7 +36,7 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api project(':lib')
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     //    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4"
     //    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4"
