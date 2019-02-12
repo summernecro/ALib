@@ -4,12 +4,10 @@ package com.siweisoft.app.main;
 
 import android.content.IntentFilter;
 import android.os.Environment;
-import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.lib.base.activity.BaseUIActivity;
-import com.android.lib.base.fragment.BaseUIFrag;
 import com.android.lib.base.interf.view.OnAppItemSelectListener;
 import com.android.lib.network.bean.res.BaseResBean;
 import com.android.lib.network.news.NetAdapter;
@@ -18,7 +16,6 @@ import com.android.lib.service.main.KeepLiveService;
 import com.android.lib.util.ToastUtil;
 //import com.raizlabs.android.dbflow.sql.language.Select;
 import com.android.lib.base.fragment.FragUtil;
-import com.bumptech.glide.Glide;
 import com.siweisoft.app.text.TextFrag;
 
 public class MainAct extends BaseUIActivity<MainUIOpe,MainValue> implements View.OnClickListener,OnAppItemSelectListener {
